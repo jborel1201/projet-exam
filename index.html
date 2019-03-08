@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="imgApp">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Images</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="app/lib/angular/angular.js"></script>
+    <script src="app/lib/angular-route/angular-route.js"></script>
+
+
+    <script src="app.module.js"></script>
+    <script src="app.config.js"></script>
+    <script src="components/img-view/img-view.module.js"></script>
+    <script src="components/img-view/img-view.component.js"></script>
+
+
+</head>
+
+<!--<body ng-controller="imgListController">-->
+
+<body>
+
+    <!--<img-view></img-view>-->
+    <div ng-view></div>
+    <!--
+    <div class="container" ng-show="showPagination">
+        <div class="row justify-content-center">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item" ng-class="{'disabled' : {{activePagination}} == 1}">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+
+                    <li class="page-item" ng-repeat="n in pagination" ng-class="{'active': {{activePagination}} == n }"
+                        ng-click="paginationEvent(n)"><a class="page-link" href="#">{{n}}</a></li>
+
+                    <li class="page-item" ng-class="{'disabled' : {{activePagination}} == {{maxPagination}}}">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+-->
+
+</body>
+
+</html>
