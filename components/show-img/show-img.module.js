@@ -1,1 +1,4 @@
-angular.module('showImg',['ngRoute']);
+angular.module('showImg',[
+    'ngRoute',
+    'imageService'
+]);

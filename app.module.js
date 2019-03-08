@@ -3,5 +3,6 @@ angular.module('imgApp',[
     'selectBar',
     'imgViewList',
     'imgViewGal',
-    'showImg'
+    'showImg',
+    'imageService'
 ]);

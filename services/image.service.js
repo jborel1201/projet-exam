@@ -2,10 +2,10 @@ angular.
     module('imageService').
     factory('Image', ['$resource',
         function ($resource) {
-            return $resource('img/:imgName.json', {}, {
+            return $resource('datas/:imgName.json', {}, {
                 query: {
                     method: 'GET',
-                    params: { imgName: 'datas' },
+                    params: { imgName: 'images' },
                     isArray: true
                 }
             });

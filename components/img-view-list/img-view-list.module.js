@@ -1,1 +1,3 @@
-angular.module('imgViewList', []);
+angular.module('imgViewList', [
+    'imageService'
+]);

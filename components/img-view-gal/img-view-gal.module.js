@@ -1,1 +1,4 @@
-angular.module('imgViewGal', ['ngRoute']);
+angular.module('imgViewGal', [
+    'ngRoute',
+    'imageService'
+]);
