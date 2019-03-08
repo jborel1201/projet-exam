@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <div class="row" ng-show="!$ctrl.listView">
+        <div class="col-{{$ctrl.col}}" ng-repeat="image in $ctrl.images">
+            <a href="#!/{{image.name}}">
+                <img ng-src="{{image.url}}" alt="{{image.name}}">
+            </a>
+        </div>
+    </div>
+</div>
