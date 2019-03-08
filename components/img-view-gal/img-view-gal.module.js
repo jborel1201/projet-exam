@@ -1,1 +1,1 @@
-angular.module('imgViewGal', []);
+angular.module('imgViewGal', ['ngRoute']);

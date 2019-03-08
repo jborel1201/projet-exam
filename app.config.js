@@ -2,19 +2,16 @@ angular.
   module('imgApp').
   config(['$routeProvider',
     function config($routeProvider) {
-      $routeProvider.
-        when('/', {
-          template: '<img-view></img-view>'
-        }).
+      $routeProvider.       
         when('/img/list', {
           template : '<img-view-list></img-view-list>'
         }).
         when('/img/:nb', {
-          template : '<p>nb</p>'
+          template : '<img-view-gal></img-view-gal>'
         }).
         when('/:imgName', {
           template: '<h1>test</h1>'
         }).
-        otherwise('/');
+        otherwise('/img/4');
     }
   ]);
