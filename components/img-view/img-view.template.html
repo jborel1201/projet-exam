@@ -14,7 +14,7 @@
     <!-- liste -->
     <ul ng-show="$ctrl.listView">
         <li ng-repeat="image in $ctrl.images">
-            <a href="#!/image/{{image.name}}">
+            <a href="#!/{{image.name}}">
                 <p>
                     <img ng-src="{{image.url}}" alt="{{image.name}}">
                     {{image.name}}

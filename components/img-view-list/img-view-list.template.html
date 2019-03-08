@@ -1,0 +1,15 @@
+
+<div class="container-fluid">
+
+    <ul>
+        <li ng-repeat="image in $ctrl.images">
+            <a href="#!/{{image.name}}">
+                <p>
+                    <img ng-src="{{image.url}}" alt="{{image.name}}">
+                    {{image.name}}
+                </p>
+            </a>
+        </li>
+    </ul>
+
+</div>
