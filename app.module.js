@@ -1,1 +1,7 @@
-angular.module('imgApp',['ngRoute','selectBar','imgViewList','imgViewGal']);
+angular.module('imgApp',[
+    'ngRoute',
+    'selectBar',
+    'imgViewList',
+    'imgViewGal',
+    'showImg'
+]);

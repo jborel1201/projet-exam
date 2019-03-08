@@ -10,7 +10,7 @@ angular.
           template : '<img-view-gal></img-view-gal>'
         }).
         when('/view/:imgName', {
-          template: '<h1>test</h1>'
+          template: '<show-img></show-img>'
         }).
         otherwise('/img/4');
     }
