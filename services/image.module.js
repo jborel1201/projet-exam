@@ -1,1 +1,1 @@
-angular.module(image,['ngResource']);
+angular.module('imageService',['ngResource']);

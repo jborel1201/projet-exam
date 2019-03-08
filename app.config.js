@@ -9,7 +9,7 @@ angular.
         when('/img/:nb', {
           template : '<img-view-gal></img-view-gal>'
         }).
-        when('/:imgName', {
+        when('/view/:imgName', {
           template: '<h1>test</h1>'
         }).
         otherwise('/img/4');

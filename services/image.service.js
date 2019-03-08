@@ -1,11 +1,11 @@
 angular.
-    module('core.phone').
+    module('imageService').
     factory('Image', ['$resource',
         function ($resource) {
-            return $resource('datas/:imgName.json', {}, {
+            return $resource('img/:imgName.json', {}, {
                 query: {
                     method: 'GET',
-                    params: { imgName: 'images' },
+                    params: { imgName: 'datas' },
                     isArray: true
                 }
             });
