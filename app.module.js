@@ -1,1 +1,1 @@
-angular.module('imgApp',['ngRoute','imgView']);
+angular.module('imgApp',['ngRoute','selectBar','imgView']);
