@@ -14,15 +14,19 @@
 
     <link rel="stylesheet" href="css/app.css">
 
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>   
 
 
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
-    <script src="services/image.module.js"></script> 
-    <script src="services/image.service.js"></script>   
+    <script src="services/image.module.js"></script>
+    <script src="services/image.service.js"></script>
     <script src="components/select-bar/select-bar.module.js"></script>
     <script src="components/select-bar/select-bar.component.js"></script>
     <script src="components/img-view-list/img-view-list.module.js"></script>
@@ -40,10 +44,21 @@
 
 <body>
 
-    <select-bar></select-bar>   
 
-    <!--<img-view></img-view>-->
-    <div ng-view></div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8 cadre">
+                <select-bar></select-bar>
+                <div ng-view></div>
+            </div>
+            <div class="col-4 cadre"></div>
+        </div>
+    </div>
+
+
+
+
     <!--
     <div class="container" ng-show="showPagination">
         <div class="row justify-content-center">

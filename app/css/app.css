@@ -16,5 +16,10 @@ li{
 
 button , .selectBar{
     padding:15px;
-    width:100px
+    width:100px;
+}
+
+.cadre{
+ 
+    border: 3px solid black;
 }
