@@ -23,3 +23,9 @@ button , .selectBar{
  
     border: 3px solid black;
 }
+
+#drop_zone {
+    border: 5px solid blue;
+    width:  200px;
+    height: 100px;
+  }

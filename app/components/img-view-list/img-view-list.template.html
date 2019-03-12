@@ -1,8 +1,8 @@
 
 <div class="container-fluid">
 
-    <ul>
-        <li ng-repeat="image in $ctrl.images">
+    <ul id="draggableContainer">
+        <li ng-repeat="image in $ctrl.images" class="draggable">
             <a href="#!/view/{{image.name}}">
                 <p>
                     <img ng-src="{{image.url}}" alt="{{image.name}}">

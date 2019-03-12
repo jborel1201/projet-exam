@@ -5,4 +5,11 @@ angular.module('imgApp',[
     'imgViewGal',
     'showImg',
     'imageService'
-]);
+    
+])
+.controller('test', function testController(){
+
+
+
+
+});

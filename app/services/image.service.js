@@ -7,7 +7,8 @@ angular.
                     method: 'GET',
                     params: { imgName: 'images' },
                     isArray: true
-                }
+                }                
             });
+            
         }
     ]);

@@ -14,13 +14,16 @@
 
     <link rel="stylesheet" href="css/app.css">
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
-    <script src="lib/jquery/dist/jquery.min.js"></script>   
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="js/drag-drop.js"></script>
 
 
     <script src="app.module.js"></script>
@@ -35,6 +38,7 @@
     <script src="components/img-view-gal/img-view-gal.component.js"></script>
     <script src="components/show-img/show-img.module.js"></script>
     <script src="components/show-img/show-img.component.js"></script>
+   
 
 
 
@@ -42,44 +46,23 @@
 
 <!--<body ng-controller="imgListController">-->
 
-<body>
-
+<body ng-controller="test">
 
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-8 cadre">
+
                 <select-bar></select-bar>
                 <div ng-view></div>
             </div>
-            <div class="col-4 cadre"></div>
+
+            <div class="col-4 cadre" id="droppable">
+              
+            </div>
         </div>
     </div>
-
-
-
-
-    <!--
-    <div class="container" ng-show="showPagination">
-        <div class="row justify-content-center">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item" ng-class="{'disabled' : {{activePagination}} == 1}">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-
-                    <li class="page-item" ng-repeat="n in pagination" ng-class="{'active': {{activePagination}} == n }"
-                        ng-click="paginationEvent(n)"><a class="page-link" href="#">{{n}}</a></li>
-
-                    <li class="page-item" ng-class="{'disabled' : {{activePagination}} == {{maxPagination}}}">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
--->
-
+   
 </body>
 
 </html>
