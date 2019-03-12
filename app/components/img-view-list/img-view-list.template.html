@@ -2,13 +2,12 @@
 <div class="container-fluid">
 
     <ul id="draggableContainer">
-        <li ng-repeat="image in $ctrl.images" class="draggable">
-            <a href="#!/view/{{image.name}}">
+        <li ng-repeat="image in $ctrl.images" class="draggable"  data-index="{{$index}}" data-object="{{image}}">            
                 <p>
                     <img ng-src="{{image.url}}" alt="{{image.name}}">
-                    {{image.name}}
+                {{image.name}}
                 </p>
-            </a>
+            
         </li>
     </ul>
 
