@@ -7,9 +7,10 @@ angular.module('imgApp',[
     'imageService'
     
 ])
-.controller('test', function testController(){
+.controller('test',function testController($scope){
 
-
+console.log($scope);
+$scope.imagesDrop = [];
 
 
 });

@@ -50,7 +50,7 @@ angular.
 
 
 
-            console.log($scope)
+            console.log($scope.$parent.$parent)
             $("#draggableContainer")
                 .delegate(".draggable", "mouseover", function () {
                     $(this).css("cursor", "move").draggable({
@@ -65,9 +65,9 @@ angular.
 
             $("#droppable").droppable({
                 drop: function (event, ui) {
-                    //var imgDrop = JSON.parse(ui.draggable.context.firstElementChild.dataset.object)
-                    //listDrop.push(imgDrop)
-                    
+                    var imgDrop = JSON.parse(ui.draggable.context.firstElementChild.dataset.object);
+                    $scope.$parent.$parent.imagesDrop.push(imgDrop);
+                    console.log($scope.$parent.$parent);
                     let indexDrop = ui.draggable.context.firstElementChild.dataset.index;
                     console.log(indexDrop);
                     updateData(indexDrop);

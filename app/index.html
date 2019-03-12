@@ -38,7 +38,7 @@
     <script src="components/img-view-gal/img-view-gal.component.js"></script>
     <script src="components/show-img/show-img.module.js"></script>
     <script src="components/show-img/show-img.component.js"></script>
-   
+
 
 
 
@@ -58,11 +58,18 @@
             </div>
 
             <div class="col-4 cadre" id="droppable">
-              
+                <ul>
+                    <li ng-repeat="image in imagesDrop">
+                        <p>
+                            <img ng-src="{{image.url}}" alt="{{image.name}}">
+                            {{image.name}}
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-   
+
 </body>
 
 </html>
