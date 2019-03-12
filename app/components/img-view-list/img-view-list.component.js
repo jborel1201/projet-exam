@@ -23,12 +23,9 @@ angular.
                     });
                 })
                 .delegate(".draggable", "dblclick", function () {
-                   //console.log($(this).context.firstElementChild.alt)
-                   /*
-                   todo: recuperer le nom de l'image
-                   */
-                    var imageName = $(this).context.dataset.object;
-                    document.location.href = `#!/view/${imageName}`
+                  
+                    var objectImage = JSON.parse($(this).context.dataset.object);                    
+                    document.location.href = `#!/view/${objectImage.name}`
                 });
 
             $("#droppable").droppable({
