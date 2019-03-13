@@ -23,14 +23,13 @@ angular.
                     });
                 })
                 .delegate(".draggable", "dblclick", function () {
-                  
+                 
                     var objectImage = JSON.parse($(this).context.dataset.object);                    
                     document.location.href = `#!/view/${objectImage.name}`
                 });
 
             $("#droppable").droppable({
-                drop: function (event, ui) {  
-                    console.log(ui)                 
+                drop: function (event, ui) {                                  
                     var imgDrop = JSON.parse(ui.draggable.context.dataset.object);
                     //ajout de l'élément droppé à la liste des images deu scope principal
                     $scope.$parent.$parent.imagesDrop.push(imgDrop);
