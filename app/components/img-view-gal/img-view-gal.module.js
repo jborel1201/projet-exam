@@ -1,4 +1,3 @@
 angular.module('imgViewGal', [
-    'ngRoute',
-    'imageService'
+    'ngRoute'
 ]);

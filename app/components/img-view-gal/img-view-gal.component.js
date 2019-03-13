@@ -29,11 +29,12 @@ angular.
 
 
 
-            $(function(){
+            $(function () {
                 $("#draggableContainer")
-                    .delegate(".draggable", "mouseover", function () {                                         
+                    .delegate(".draggable", "mouseover", function () {
                         $(this).css("cursor", "move").draggable({
-                            revert: true
+                            revert: true,
+                            snap: "#droppable"
                         });
                     })
                     .delegate(".draggable", "dblclick", function () {
@@ -41,9 +42,11 @@ angular.
                         document.location.href = `#!/view/${imageName}`
                     });
 
+
+
                 $("#droppable").droppable({
                     drop: function (event, ui) {
-                        var imgDrop = JSON.parse(ui.draggable.context.dataset.object);                        
+                        var imgDrop = JSON.parse(ui.draggable.context.dataset.object);
                         //ajout de l'élément droppé à la liste des images deu scope principal
                         $scope.$parent.$parent.imagesDrop.push(imgDrop);
                         //récupération de l'index de l'élément et mise à jour de la liste d'images                   
@@ -53,7 +56,10 @@ angular.
                     }
                 });
 
-            })
+                $("#selectable").selectable();
+
+            });
+
 
         }
 

@@ -24,3 +24,12 @@ button , .selectBar{
     border: 3px solid black;
 }
 
+#dropfile{
+width: 300px;
+height: 150px;
+border: 3px dashed #BBBBBB;
+line-height:50px;
+text-align: center;
+margin: 15px;
+}
+
