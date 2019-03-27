@@ -2,12 +2,14 @@ angular.module('imgApp', [
     'ngRoute',
     'selectBar',
     'imgViewList',
-    'imgViewGal',
+    'imgViewGalSmall',
+    'imgViewGalMedium',
+    'imgViewGalLarge',
     'showImg',
     'imageService'
 
 ])
-    .controller("mainController",["$scope","Image",function($scope,Image) {
+    .controller("mainController", ["$scope", "$http", "Image", function ($scope, $http, Image) {
 
         $scope.images = Image.query();
 
@@ -41,7 +43,7 @@ angular.module('imgApp', [
                         // Stop the propagation of the event
                         e.preventDefault();
                         e.stopPropagation();
-                        $(this).css('border', '3px dashed green');
+                        $(this).css('border', '3px dashed #BBBBBB').css('background','#FFFFFF');
                         // Main function to upload
                         upload(e.originalEvent.dataTransfer.files);
                     }
@@ -64,11 +66,50 @@ angular.module('imgApp', [
 
                 // When the image is loaded,
                 // run handleReaderLoad function
-                //reader.onload = handleReaderLoad;
+                reader.onload = handleReaderLoad;
 
                 // Read in the image file as a data URL.
                 reader.readAsDataURL(f);
-                console.log(f)
+                console.log(f)                
+            }
+
+            function testPhp() {
+
+                $http({
+                    method: 'post',
+                    url: '/php/updatejson.php',                  
+
+                }).then(function successCallback(response) {
+                    console.log(response)
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+            }
+
+            function handleReaderLoad(evt) {
+                var pic = {};
+                pic.file = evt.target.result.split(',')[1];
+
+                var str = jQuery.param(pic);
+                
+                //testPhp();
+                /*$.ajax({
+                    type: 'POST',
+                    url: 'php/updateson.php',
+                    data: str,
+                    success: function (data) {
+                        do_something(data);
+                    }
+                });
+                
+                $http.get('/php/updateJson.php', str).then(function successCallback(data) {
+                    console.log(data);
+                }, function errorCallback() {
+                    console.log('erreur');
+                });*/
+
+
             }
 
         });

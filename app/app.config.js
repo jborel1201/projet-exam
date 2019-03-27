@@ -6,12 +6,18 @@ angular.
         when('/img/list', {
           template : '<img-view-list></img-view-list>'
         }).
-        when('/img/:nb', {
-          template : '<img-view-gal></img-view-gal>'
+        when('/img/gal/small', {
+          template : '<img-view-gal-small></img-view-gal-small>'
+        }).
+        when('/img/gal/medium', {
+          template : '<img-view-gal-medium></img-view-gal-medium>'
+        }).
+        when('/img/gal/large', {
+          template : '<img-view-gal-large></img-view-gal-large>'
         }).
         when('/view/:imgName', {
           template: '<show-img></show-img>'
         }).
-        otherwise('/img/4');
+        otherwise('/img/gal/medium');
     }
   ]);

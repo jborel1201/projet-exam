@@ -1,0 +1,28 @@
+<style>
+    #feedback {
+        font-size: 1.4em;
+    }
+
+    #selectable .ui-selecting {
+        background: #FECA40;
+    }
+
+    #selectable .ui-selected {
+        background: #F39814;
+        color: white;
+    }
+</style>
+
+
+<div class="container-fluid" id="selectable">
+
+    <div class="row" id="draggableContainer">
+        <div class="col-{{$ctrl.data.col}} draggable" ng-repeat="image in $ctrl.data.images" data-index="{{$index}}"
+            data-object="{{image}}">
+
+            <img ng-src="{{image.url}}" alt="{{image.name}}">
+
+        </div>
+    </div>
+
+</div>
