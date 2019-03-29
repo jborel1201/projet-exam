@@ -1,0 +1,27 @@
+#containerGlobal{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#containerItem{
+    height:100px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+   
+    
+}
+
+
+.fa-folder{
+    font-size: 4em;  
+
+}
+
+
+.item{
+
+    margin:40px;
+    vertical-align: middle;
+}

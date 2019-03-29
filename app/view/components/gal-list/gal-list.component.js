@@ -1,8 +1,8 @@
 angular.
-    module('imgViewList').
-    component('imgViewList', {
-        templateUrl: "components/img-view-list/img-view-list.template.html",
-        controller: ['$scope', function imgViewController($scope) {
+    module('galList').
+    component('galList', {
+        templateUrl: "components/gal-list/gal-list.template.html",
+        controller: ['$scope', function listController($scope) {
 
             recupImages = $scope.$parent.$parent.images;
             this.images = recupImages;

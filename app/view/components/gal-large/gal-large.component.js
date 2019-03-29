@@ -1,8 +1,8 @@
 angular.
-    module('imgViewGalSmall').
-    component('imgViewGalSmall', {
-        templateUrl: "view/components/img-view-gal-small/img-view-gal-small.template.html",
-        controller: ['$routeParams', '$scope', "$timeout", function imgViewController($routeParams, $scope, $timeout) {
+    module('galLarge').
+    component('galLarge', {
+        templateUrl: "view/components/gal-large/gal-large.template.html",
+        controller: ['$routeParams', '$scope', "$timeout", function largeController($routeParams, $scope, $timeout) {
 
             //recupération des datas du scope principal
             var images = $scope.$parent.$parent.images;

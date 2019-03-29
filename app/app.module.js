@@ -1,14 +1,11 @@
 angular.module('imgApp', [
-    'ngRoute',
-    'selectBar',
-    'imgViewList',
-    'imgViewGalSmall',
-    'imgViewGalMedium',
-    'imgViewGalLarge',
+    'ngRoute',    
     'showImg',
-    'imageService'
+    'imageService',
+    'menu',
+    'galerie' 
 
-])
+])   
     .controller("mainController", ["$scope", "$http", "Image", function ($scope, $http, Image) {
 
         $scope.images = Image.query();
@@ -43,7 +40,7 @@ angular.module('imgApp', [
                         // Stop the propagation of the event
                         e.preventDefault();
                         e.stopPropagation();
-                        $(this).css('border', '3px dashed #BBBBBB').css('background','#FFFFFF');
+                        $(this).css('border', '3px dashed #BBBBBB').css('background', '#FFFFFF');
                         // Main function to upload
                         upload(e.originalEvent.dataTransfer.files);
                     }
@@ -70,14 +67,14 @@ angular.module('imgApp', [
 
                 // Read in the image file as a data URL.
                 reader.readAsDataURL(f);
-                console.log(f)                
+                console.log(f)
             }
 
             function testPhp() {
 
                 $http({
                     method: 'post',
-                    url: '/php/updatejson.php',                  
+                    url: '/php/updatejson.php',
 
                 }).then(function successCallback(response) {
                     console.log(response)
@@ -92,7 +89,7 @@ angular.module('imgApp', [
                 pic.file = evt.target.result.split(',')[1];
 
                 var str = jQuery.param(pic);
-                
+
                 //testPhp();
                 /*$.ajax({
                     type: 'POST',

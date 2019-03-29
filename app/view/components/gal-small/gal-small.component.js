@@ -1,8 +1,8 @@
 angular.
-    module('imgViewGalMedium').
-    component('imgViewGalMedium', {
-        templateUrl: "view/components/img-view-gal-medium/img-view-gal-medium.template.html",
-        controller: ['$routeParams', '$scope', "$timeout", function imgViewController($routeParams, $scope, $timeout) {
+    module('galSmall').
+    component('galSmall', {
+        templateUrl: "view/components/gal-small/gal-small.template.html",
+        controller: ['$routeParams', '$scope', "$timeout", function smallController($routeParams, $scope, $timeout) {
 
             //recupération des datas du scope principal
             var images = $scope.$parent.$parent.images;
@@ -12,7 +12,7 @@ angular.
             //création de l'objet contenant les datas a injecter à la vue
             var objectData = {};
             objectData.images = images;
-            objectData.col = 4;
+            objectData.col = col;
 
             //Affectation de l'objet à la variable lié à la vue
             this.data = objectData;
