@@ -3,7 +3,8 @@ angular.module('imgApp', [
     'showImg',
     'imageService',
     'menu',
-    'galerie' 
+    'galerie',
+    'upload' 
 
 ])   
     .controller("mainController", ["$scope", "$http", "Image", function ($scope, $http, Image) {
