@@ -1,1 +1,1 @@
-angular.module('galList', []);
+angular.module('galList', ['imageService']);

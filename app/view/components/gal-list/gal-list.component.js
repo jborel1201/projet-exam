@@ -1,11 +1,11 @@
 angular.
     module('galList').
     component('galList', {
-        templateUrl: "components/gal-list/gal-list.template.html",
-        controller: ['$scope', function listController($scope) {
+        templateUrl: "view/components/gal-list/gal-list.template.html",
+        controller: ['$scope','Image', function listController($scope,Image) {
 
-            recupImages = $scope.$parent.$parent.images;
-            this.images = recupImages;
+          
+            this.images = Image.query();
 
             // fonction de raffraichissement de la vue lors du drag and drop
             function updateData(index) {

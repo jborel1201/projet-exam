@@ -2,20 +2,11 @@ angular.
     module('galMedium').
     component('galMedium', {
         templateUrl: "view/components/gal-medium/gal-medium.template.html",
-        controller: ['$routeParams', '$scope', "$timeout", function mediumController($routeParams, $scope, $timeout) {
+        controller: ['$routeParams', '$scope', "$timeout", 'Image', function mediumController($routeParams, $scope, $timeout, Image) {
 
             //recupération des datas du scope principal
-            var images = $scope.$parent.$parent.images;
-            //recupération du parametre de la route pour taille d'affichage
-            var col = $routeParams.nb;
+            this.images = Image.query();
 
-            //création de l'objet contenant les datas a injecter à la vue
-            var objectData = {};
-            objectData.images = images;
-            objectData.col = 4;
-
-            //Affectation de l'objet à la variable lié à la vue
-            this.data = objectData;
 
 
             // fonction de raffraichissement de la vue lors du drag and drop
@@ -40,13 +31,13 @@ angular.
                     })
 
                     $(".draggable").draggable({
-                                revert: true,
-                                snap: "#droppable"
-                            });
-                            $("#draggableContainer").delegate(".draggable", "dblclick", function () {
-                            var imageName = $(this).find('img').attr('alt');
-                            document.location.href = `#!/view/${imageName}`
-                        });
+                        revert: true,
+                        snap: "#droppable"
+                    });
+                    $("#draggableContainer").delegate(".draggable", "dblclick", function () {
+                        var imageName = $(this).find('img').attr('alt');
+                        document.location.href = `#!/view/${imageName}`
+                    });
 
 
 

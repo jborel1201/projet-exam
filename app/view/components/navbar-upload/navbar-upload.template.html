@@ -1,11 +1,21 @@
-<link rel="stylesheet" href="view/components/select-bar/select-bar.css">
+<link rel="stylesheet" href="view/components/navbar-upload/navbar-upload.css">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarColor03">
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="btn btn-outline-primary" href="#!/"><i class="fas fa-home"></i></a>
+                <span class="btn btn-primary btn-file">
+                    <i class="fas fa-camera"><input type="file" class="inputFile" capture="environment"></i>
+                </span>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav center">            
+            <li class="nav-item">
+                <span class="btn btn-outline-primary btn-file" id="dragDropUpload">
+                    <i class="fas fa-file-upload"><input type="file" class=" inputFile" multiple ></i>
+                </span>
             </li>
         </ul>
 

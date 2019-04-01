@@ -2,21 +2,11 @@ angular.
     module('galSmall').
     component('galSmall', {
         templateUrl: "view/components/gal-small/gal-small.template.html",
-        controller: ['$routeParams', '$scope', "$timeout", function smallController($routeParams, $scope, $timeout) {
+        controller: ['$scope', "$timeout",'Image', function smallController($scope, $timeout,Image) {
 
-            //recupération des datas du scope principal
-            var images = $scope.$parent.$parent.images;
-            //recupération du parametre de la route pour taille d'affichage
-            var col = $routeParams.nb;
-
-            //création de l'objet contenant les datas a injecter à la vue
-            var objectData = {};
-            objectData.images = images;
-            objectData.col = col;
-
-            //Affectation de l'objet à la variable lié à la vue
-            this.data = objectData;
-
+          
+            this.images = Image.query();
+          
 
             // fonction de raffraichissement de la vue lors du drag and drop
             function updateData(index) {

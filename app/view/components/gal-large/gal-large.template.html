@@ -2,13 +2,16 @@
 
 <div class="container-fluid" id="selectable">
 
-    <div class="row" id="draggableContainer">
-        <div class="col-{{$ctrl.data.col}} draggable" ng-repeat="image in $ctrl.data.images" data-index="{{$index}}"
-            data-object="{{image}}">
-
-            <img ng-src="{{image.url}}" alt="{{image.name}}">
-
+        <div class="row" id="draggableContainer">
+            <div class="draggable item" ng-repeat="image in $ctrl.images" data-index="{{$index}}">
+    
+                <img ng-src="{{image.url}}" alt="{{image.name}}">
+    
+                <div class="imageFooter">
+                    <p>{{image.name}}</p>                
+                </div>
+    
+            </div>
         </div>
+    
     </div>
-
-</div>

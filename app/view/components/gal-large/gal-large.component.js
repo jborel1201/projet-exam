@@ -2,20 +2,11 @@ angular.
     module('galLarge').
     component('galLarge', {
         templateUrl: "view/components/gal-large/gal-large.template.html",
-        controller: ['$routeParams', '$scope', "$timeout", function largeController($routeParams, $scope, $timeout) {
+        controller: ['$routeParams', '$scope', "$timeout", 'Image', function largeController($routeParams, $scope, $timeout,Image) {
 
             //recupération des datas du scope principal
-            var images = $scope.$parent.$parent.images;
-            //recupération du parametre de la route pour taille d'affichage
-            var col = $routeParams.nb;
-
-            //création de l'objet contenant les datas a injecter à la vue
-            var objectData = {};
-            objectData.images = images;
-            objectData.col = col;
-
-            //Affectation de l'objet à la variable lié à la vue
-            this.data = objectData;
+            this.images = Image.query();
+          
 
 
             // fonction de raffraichissement de la vue lors du drag and drop

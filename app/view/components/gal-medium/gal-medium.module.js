@@ -1,3 +1,4 @@
 angular.module('galMedium', [
-    'ngRoute'
+    'ngRoute',
+    'imageService'
 ]);
