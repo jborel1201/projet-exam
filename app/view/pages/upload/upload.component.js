@@ -8,10 +8,13 @@ angular.
          $scope.action = $routeParams.action
 
          $scope.files = FilesUpload.filesUpload;
-
-
-        
          console.log($scope.files)
+
+
+        $scope.$watch('files',function(){
+            console.log('ok')
+        })
+         
 
         }]
     })

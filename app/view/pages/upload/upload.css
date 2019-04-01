@@ -13,10 +13,18 @@ li{
 }
 
 #filesUpload{
-    flex: 7
+    flex: 7;
+    max-height: 100%;
 }
 
 #filesUpload img{
     width: 100px;
     height: 80px;
+}
+
+
+tbody {
+    height: 100%;       
+    overflow-y: auto;    
+    overflow-x: hidden;  
 }

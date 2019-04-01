@@ -27,21 +27,13 @@ angular.
                 var reader = new FileReader();
 
 
-                reader.addEventListener("load", function () {
+                //fonction de chargement du fichier et 
+                reader.addEventListener("load", function () {                   
 
-                    console.log(file)
-
-                    /*objFile = {}
-                    objFile.name = file.name;
-                    objFile.size = file.size;
-                    objFile.type = file.type;
-                    objFile.date = new Date();
-                    objFile.src = this.result*/
                     FilesUpload.filesUpload.push(new uploadFile(file.name, file.size, file.type, new Date(), this.result))
 
                 }, false);
                 reader.readAsDataURL(file);
-
             }
 
             //Initialisation des évènements liés au Drag and Drop
@@ -70,7 +62,7 @@ angular.
 
             // traitement des éléments lors du changement d'état de l'input 
             $(".inputFile").on('change', function () {
-
+                FilesUpload.filesUpload = [];
 
                 var files = $(this).get(0).files;
                 filesUploadList = [];
