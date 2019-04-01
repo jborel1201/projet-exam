@@ -1,14 +1,24 @@
-<div>
-    <navbar-upload></navbar-upload>
+<link rel="stylesheet" href="view/pages/upload/upload.css">
 
-    <div>
-        <div>
-            <ul>
-                <li><a href="#!/upload/upload"><i class="far fa-folder"></i>Upload</a></li>
-                <li><a href="#!/upload/traitements"><i class="far fa-folder"></i>Traitements</a></li>
-            </ul>
-        </div>
+<navbar-upload></navbar-upload>
+
+<div id="uploadContent">
+    <div id="nav">
+        <ul>
+            <li id="test"><a href="#!/upload/upload"><i class="far fa-folder"></i>Upload</a></li>
+            <li><a href="#!/upload/traitements"><i class="far fa-folder"></i>Traitements</a></li>
+        </ul>
     </div>
+
+    <ul id="filesUpload">
+        <li ng-repeat="file in files">
+            <p>
+                <img src={{file.src}}>
+                {{file.name}}
+                {{file.size}}
+                {{file.type}}
+                {{file.date | date:'dd-MM-yyyy HH:mm:ss'}}
+            </p>
+        </li>
+    </ul>
 </div>
-
-

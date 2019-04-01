@@ -1,0 +1,22 @@
+li{
+    list-style: none;   
+
+}
+
+#uploadContent{
+    display: flex;
+    flex-direction: row;
+}
+
+#nav{
+    flex: 1 1 150px
+}
+
+#filesUpload{
+    flex: 7
+}
+
+#filesUpload img{
+    width: 100px;
+    height: 80px;
+}

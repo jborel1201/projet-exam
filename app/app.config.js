@@ -11,7 +11,10 @@ angular.
         }).
         when('/upload', {
           template: '<upload></upload>'
-        }).        
+        }).
+        when('/upload/:action', {
+          template: '<upload></upload>'
+        }).             
         otherwise('/');
     }
   ]);

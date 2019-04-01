@@ -1,3 +1,4 @@
 angular.module('upload',[
-  'navbarUpload'
+  'navbarUpload',
+  'ngRoute'
 ]);
