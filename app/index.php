@@ -49,6 +49,8 @@
     <script src="boundaries/components/gal-medium/gal-medium.component.js"></script>
     <script src="boundaries/components/gal-small/gal-small.module.js"></script>
     <script src="boundaries/components/gal-small/gal-small.component.js"></script>
+    <script src="boundaries/components/upload-files/upload-files.module.js"></script>
+    <script src="boundaries/components/upload-files/upload-files.component.js"></script>
     <!----------Import services--------------------->
     <script src="services/image.module.js"></script>
     <script src="services/image.service.js"></script>

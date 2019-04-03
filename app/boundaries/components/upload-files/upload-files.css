@@ -1,0 +1,96 @@
+#upload-files-content {
+    /*display: flex;
+    flex-direction: column;
+    align-items: stretch;*/
+    width: 100%;
+    height: 100%;
+}
+
+/*
+Nav-bar
+*/
+
+.navbar {
+    height: 60px;
+    padding: 10px
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    cursor: inherit;
+    display: block;
+}
+
+#dragDropUpload {
+    width: 300px;
+}
+
+.styleDragDrop {
+    background-color: #FFFFFF;
+    border: #FFFFFF
+}
+
+/*
+Progress-bar
+*/
+
+.progress {
+    height: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/*
+table
+*/
+
+
+
+#filesUpload img {
+    width: 100px;
+    height: 80px;
+}
+
+tbody {
+    display: block;
+    height: 750px;
+    overflow-y: auto;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+thead {
+    width: calc( 100% - 1em)
+}
+
+#test {
+    height: 20px;
+}
+
+.fa-trash-alt {
+    cursor : pointer;
+}
+
+.test{
+    background-color: #FFFFFF
+}

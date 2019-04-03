@@ -1,18 +1,4 @@
-li {
-    list-style: none;
-}
-
-#uploadContent {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-}
-
-#nav {
-    flex: 1;
-    width: 175px
-}
-
+/*
 #filesUpload {
     flex: 7;
     height: 100%;
@@ -27,39 +13,33 @@ tbody {
     max-height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+}*/
+
+#uploadContent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
-/*
-test
-*/
-.btn-file {
-    position: relative;
-    overflow: hidden;
+
+li {
+    list-style: none;
+}
+
+#nav {
+    width: 175px;
+    height: 100%;
+    margin-right: 5px;
+}
+
+#nav ul {
+   
+    position: relative;    
+    top: 50%;  
+    
     
 }
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;   
-    cursor: inherit;
-    display: block;
-}
 
-#dragDropUpload{
-    width:300px;   
+upload-files {
+    flex: 1;
 }
-
-.hidden{
-    display: none;
-}
-.styleDragDrop{
-    background-color: #FFFFFF;
-    border: #FFFFFF
-}
-
