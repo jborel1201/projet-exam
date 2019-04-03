@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Images Php</title>
 
 
@@ -32,32 +32,30 @@
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
     <!----------Import pages----------------------------->
-    <script src="view/pages/menu/menu.module.js"></script>
-    <script src="view/pages/menu/menu.component.js"></script>
-    <script src="view/pages/galerie/galerie.module.js"></script>
-    <script src="view/pages/galerie/galerie.component.js"></script>
-    <script src="view/pages/upload/upload.module.js"></script>
-    <script src="view/pages/upload/upload.component.js"></script>
+    <script src="boundaries/views/menu/menu.module.js"></script>
+    <script src="boundaries/views/menu/menu.component.js"></script>
+    <script src="boundaries/views/galerie/galerie.module.js"></script>
+    <script src="boundaries/views/galerie/galerie.component.js"></script>
+    <script src="boundaries/views/upload/upload.module.js"></script>
+    <script src="boundaries/views/upload/upload.component.js"></script>
     <!----------Import composants------------------------------------------>
-    <script src="view/components/select-bar/select-bar.module.js"></script>
-    <script src="view/components/select-bar/select-bar.component.js"></script>
-    <script src="view/components/gal-list/gal-list.module.js"></script>
-    <script src="view/components/gal-list/gal-list.component.js"></script>
-    <script src="view/components/gal-large/gal-large.module.js"></script>
-    <script src="view/components/gal-large/gal-large.component.js"></script>
-    <script src="view/components/gal-medium/gal-medium.module.js"></script>
-    <script src="view/components/gal-medium/gal-medium.component.js"></script>
-    <script src="view/components/gal-small/gal-small.module.js"></script>
-    <script src="view/components/gal-small/gal-small.component.js"></script>
-    <script src="view/components/navbar-upload/navbar-upload.module.js"></script>
-    <script src="view/components/navbar-upload/navbar-upload.component.js"></script>
+    <script src="boundaries/components/select-bar/select-bar.module.js"></script>
+    <script src="boundaries/components/select-bar/select-bar.component.js"></script>
+    <script src="boundaries/components/gal-list/gal-list.module.js"></script>
+    <script src="boundaries/components/gal-list/gal-list.component.js"></script>
+    <script src="boundaries/components/gal-large/gal-large.module.js"></script>
+    <script src="boundaries/components/gal-large/gal-large.component.js"></script>
+    <script src="boundaries/components/gal-medium/gal-medium.module.js"></script>
+    <script src="boundaries/components/gal-medium/gal-medium.component.js"></script>
+    <script src="boundaries/components/gal-small/gal-small.module.js"></script>
+    <script src="boundaries/components/gal-small/gal-small.component.js"></script>
     <!----------Import services--------------------->
     <script src="services/image.module.js"></script>
     <script src="services/image.service.js"></script>
 
 
-    <script src="view/components/show-img/show-img.module.js"></script>
-    <script src="view/components/show-img/show-img.component.js"></script>
+    <script src="boundaries/components/show-img/show-img.module.js"></script>
+    <script src="boundaries/components/show-img/show-img.component.js"></script>
 
 
 

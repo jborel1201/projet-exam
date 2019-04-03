@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/app/boundaries/components/gal-medium/gal-medium.css">
+
+<div class="container-fluid" id="selectable">
+
+    <div class="row" id="draggableContainer">
+        <div class="draggable item" ng-repeat="image in $ctrl.images" data-index="{{$index}}">
+
+            <img ng-src="{{image.url}}" alt="{{image.name}}">
+
+            <div class="imageFooter">
+                <p>{{image.name}}</p>                
+            </div>
+
+        </div>
+    </div>
+
+</div>
