@@ -12,8 +12,8 @@ angular.
         when('/upload', {
           template: '<upload></upload>'
         }).
-        when('/upload/:action', {
-          template: '<upload></upload>'
+        when('/manage', {
+          template: '<manage></manage>'
         }).             
         otherwise('/');
     }

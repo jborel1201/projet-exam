@@ -40,6 +40,8 @@
     <script src="boundaries/views/galerie/galerie.component.js"></script>
     <script src="boundaries/views/upload/upload.module.js"></script>
     <script src="boundaries/views/upload/upload.component.js"></script>
+    <script src="boundaries/views/manage/manage.module.js"></script>
+    <script src="boundaries/views/manage/manage.component.js"></script>
     <!----------Import composants------------------------------------------>
     <script src="boundaries/components/select-bar/select-bar.module.js"></script>
     <script src="boundaries/components/select-bar/select-bar.component.js"></script>

@@ -3,16 +3,17 @@ angular.
     component('upload', {
 
         templateUrl: "boundaries/views/upload/upload.html",
-        controller: ['$scope', '$localStorage', function menuController($scope, $localStorage) {
+        controller: ['$scope', '$localStorage', function uploadController($scope, $localStorage) {
 
            
             $scope.files = [];
-            $scope.comment = ""; 
+            var self = this;
+            self.comment = ""; 
             var storage = $localStorage.upload? $localStorage.upload : []           
             var count = 0;
 
             
-
+            
             /*
             TODO pouvoir changer le nom et supprimer un element
             */
@@ -41,10 +42,10 @@ angular.
                clearScope();
             }
 
-            $scope.save = function(){
-              
+            $scope.save = function(){                
                 objUpload = {}
-                objUpload.comment = $scope.comment;
+                objUpload.date = new Date();
+                objUpload.comment = self.comment;
                 objUpload.datas = $scope.files;
                 storage.push(objUpload)
 
@@ -56,7 +57,7 @@ angular.
 
             function clearScope(){
                 $scope.files = [];
-                $scope.comment = "";
+                self.comment = "";
             }
 
             /*/////////////////////////////////////////////////////////////

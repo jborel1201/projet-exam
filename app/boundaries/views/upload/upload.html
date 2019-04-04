@@ -59,7 +59,7 @@
         <div ng-if="files.length > 0">
             <div class="form-group">
                 <label for="com">Commentaires</label>
-                <input type="text" class="form-control" id="com" ng-model="$scope.comment"></input>
+                <input type="text" class="form-control" id="com" ng-model="$ctrl.comment"></input>
             </div>
             <i class="fas fa-check" ng-click="save()"></i>
             <i class="fas fa-times" ng-click="removeAll()"></i>
