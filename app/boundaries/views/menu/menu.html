@@ -1,17 +1,15 @@
- <link rel="stylesheet" href="/app/boundaries/views/menu/menu.css">
+<link rel="stylesheet" href="/app/boundaries/views/menu/menu.css">
 
-<div id="containerGlobal">
-    <div id="containerItem">
-
-        <div class="item" ng-click="location('upload')">
-            <i class="far fa-folder"></i>
-            <h2>Upload</h2>
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-primary">Upload</button>
+    <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" ng-click="location('upload')">Upload Files</a>
+            <a class="dropdown-item">Manage</a>
         </div>
-
-        <div class="item" ng-click="location('galerie/medium')">
-            <i class="far fa-folder"></i>
-            <h2>Galerie</h2>
-        </div>
-
     </div>
 </div>
+
+<button type="button" class="btn btn-primary" ng-click="location('galerie/medium')">Galery</button>

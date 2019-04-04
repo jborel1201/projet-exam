@@ -1,4 +1,4 @@
 angular.module('upload',[  
   'ngRoute',
-  'uploadFiles'
+  'ngStorage'
 ]);
