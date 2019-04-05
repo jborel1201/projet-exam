@@ -3,17 +3,17 @@ angular.
     component('upload', {
 
         templateUrl: "boundaries/views/upload/upload.html",
-        controller: ['$scope', '$localStorage', function uploadController($scope, $localStorage) {
+        controller: function uploadController($scope, $localStorage, $http,Datas) {
 
-           
+
             $scope.files = [];
             var self = this;
-            self.comment = ""; 
-            var storage = $localStorage.upload? $localStorage.upload : []           
+            self.comment = "";
+            var storage = $localStorage.upload ? $localStorage.upload : []
             var count = 0;
 
-            
-            
+
+
             /*
             TODO pouvoir changer le nom et supprimer un element
             */
@@ -35,14 +35,14 @@ angular.
 
             $scope.removeElt = function (index) {
                 $scope.files.splice(index, 1)
-                
+
             }
 
             $scope.removeAll = function () {
-               clearScope();
+                clearScope();
             }
 
-            $scope.save = function(){                
+            $scope.save = function () {
                 objUpload = {}
                 objUpload.date = new Date();
                 objUpload.comment = self.comment;
@@ -50,12 +50,28 @@ angular.
                 storage.push(objUpload)
 
                 $localStorage.upload = storage;
+                console.log($scope.files)
+
+                $http({
+                    method: 'POST',
+                    url: 'controllers/test.php',
+                    data: JSON.stringify($scope.files),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+
+                }).then(function successCallback(response) {
+                    console.log(response.data)
+                  }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                  });
+
+                  //Datas.post(JSON.stringify($scope.files))
 
                 clearScope();
 
             }
 
-            function clearScope(){
+            function clearScope() {
                 $scope.files = [];
                 self.comment = "";
             }
@@ -134,18 +150,30 @@ angular.
 
 
 
-
                 /*$.ajax({
                     type: 'POST',
                     url: 'controllers/test.php',
-                    data: filesTable,
+                    data: JSON.stringify($scope.files),
+                    headers : {'Content-Type': 'application/x-www-form-urlencoded'},
                     success: function (data) {
                         console.log(data);
                     }
                 });*/
 
+                /*$http({
+                    method: 'POST',
+                    url: 'controllers/test.php',
+                    data: JSON.stringify($scope.files),
+                  }).then(function successCallback(response) {
+                      console.log(response)
+                    }, function errorCallback(response) {
+                      // called asynchronously if an error occurs
+                      // or server returns response with an error status.
+                    });*/
+
+
 
             });
-            
-        }]//ctrl
+
+        }//ctrl
     })

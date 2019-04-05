@@ -1,4 +1,5 @@
-angular.module('upload',[  
+angular.module('upload', [
   'ngRoute',
-  'ngStorage'
+  'ngStorage',
+  'datasService'
 ]);
