@@ -5,15 +5,15 @@
     <thead>
         <tr>
             <th scope="col">Image</th>
-            <th scope="col" ng-click="sortBy('name')">Nom
+            <th scope="col" class="sort" ng-click="sortBy('name')">Nom
                 <span class="sortorder" ng-show="$ctrl.filterName === 'name'"
                     ng-class="{reverse: $ctrl.reverse}"></span>
             </th>
-            <th scope="col" ng-click="sortBy('size')">Taille
+            <th scope="col" class="sort" ng-click="sortBy('size')">Taille
                 <span class="sortorder" ng-show="$ctrl.filterName === 'size'"
                     ng-class="{reverse: $ctrl.reverse}"></span>
             </th>
-            <th scope="col" ng-click="sortBy('date')">Date d'ajout
+            <th scope="col" class="sort" ng-click="sortBy('date')">Date d'ajout
                 <span class="sortorder" ng-show="$ctrl.filterName === 'date'"
                     ng-class="{reverse: $ctrl.reverse}"></span>
             </th>
