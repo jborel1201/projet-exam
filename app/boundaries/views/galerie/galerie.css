@@ -13,7 +13,8 @@ select-bar{
     border-top: 2px solid black;
     border-right: 2px solid black;
     border-left: 2px solid black; 
-    flex: 0.5;   
+    flex: 0.5; 
+    z-index: 999;  
 
 }
 

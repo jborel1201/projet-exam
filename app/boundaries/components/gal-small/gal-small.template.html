@@ -1,17 +1,22 @@
 <link rel="stylesheet" href="/app/boundaries/components/gal-small/gal-small.css">
 
-<div class="container-fluid" id="selectable">
+<div class="container-fluid" id="menu-area">
 
-    <div class="row" id="draggableContainer">
-        <div class="draggable item" ng-repeat="image in $ctrl.images" data-index="{{$index}}">
-
-            <img ng-src="{{image.url}}" alt="{{image.name}}">
-
-            <div class="imageFooter">
-                <p>{{image.name}}</p>
+    <div class="row">
+        <div class="card item" ng-repeat="image in $ctrl.images">
+            <div class="card-body">
+                <img ng-src="{{image.src}}" alt="{{image.name}}">
+                <i class="fas fa-ellipsis-v menu" ng-click="$event.stopPropagation();openMenu($event,image)"></i>
             </div>
-
         </div>
     </div>
 
+    <div id="menu-item" class="card border-primary mb-3 hidden" style="max-width: 20rem;">
+        <div class="card-header">{{$ctrl.selectedImage.name}}</div>
+        <div class="card-body">
+            <p class="card-text">Type: {{$ctrl.selectedImage.type}}</p>
+            <p class="card-text">Taille: {{$ctrl.selectedImage.size}} bytes</p>
+            <p class="card-text">Date d'ajout: {{$ctrl.selectedImage.date | date:'dd-MM-yyyy HH:mm:ss'}}</p>
+        </div>
+    </div>
 </div>
