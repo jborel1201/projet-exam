@@ -5,7 +5,7 @@ angular.
             return $resource('datas/:imgName.json', {}, {
                 query: {
                     method: 'GET',
-                    params: { imgName: 'images' },
+                    params: { imgName: 'data' },
                     isArray: true
                 }                
             });

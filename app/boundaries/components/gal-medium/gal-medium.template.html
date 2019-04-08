@@ -5,10 +5,11 @@
     <div class="row" id="draggableContainer">
         <div class="draggable item" ng-repeat="image in $ctrl.images" data-index="{{$index}}">
 
-            <img ng-src="{{image.url}}" alt="{{image.name}}">
+            <img ng-src="{{image.src}}" alt="{{image.name}}">
 
             <div class="imageFooter">
-                <p>{{image.name}}</p>                
+                <p>{{image.name}}</p>
+                <p>{{image.size}}</p>                
             </div>
 
         </div>

@@ -3,7 +3,7 @@ angular.
     component('upload', {
 
         templateUrl: "boundaries/views/upload/upload.html",
-        controller: function uploadController($scope, $localStorage, $http,Datas) {
+        controller: function uploadController($scope, $localStorage, $http, Datas) {
 
 
             $scope.files = [];
@@ -52,7 +52,7 @@ angular.
                 $localStorage.upload = storage;
                 console.log($scope.files)
 
-                $http({
+                /*$http({
                     method: 'POST',
                     url: 'controllers/test.php',
                     data: JSON.stringify($scope.files),
@@ -60,12 +60,11 @@ angular.
 
                 }).then(function successCallback(response) {
                     console.log(response.data)
-                  }, function errorCallback(response) {
+                }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                  });
-
-                  //Datas.post(JSON.stringify($scope.files))
+                });*/
+                //Datas.post(JSON.stringify($scope.files))
 
                 clearScope();
 
@@ -114,6 +113,7 @@ angular.
                     if ($('.progress-bar').attr('aria-valuenow') == 100) {
                         setTimeout(function () {
                             $(".progress").addClass("hidden");
+
                         }, 1000);
                     }
                 });
