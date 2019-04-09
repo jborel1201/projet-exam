@@ -1,11 +1,9 @@
-
-
 table {
     display: flex;
     flex-direction: column;
     max-height: 100%;
     width: 100%;
-    padding:10px
+    padding: 10px;
 }
 
 thead {
@@ -31,16 +29,16 @@ th, td {
 tbody {
     flex: 1;
     overflow: auto;
-
 }
 
-.sort{
+.sort {
     cursor: pointer;
 }
 
 .sortorder:after {
-    content: '\25b2'; 
-  }
-  .sortorder.reverse:after {
+    content: '\25b2';
+}
+
+.sortorder.reverse:after {
     content: '\25bc';
-  }
+}

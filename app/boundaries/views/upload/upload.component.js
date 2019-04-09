@@ -3,7 +3,7 @@ angular.
     component('upload', {
 
         templateUrl: "boundaries/views/upload/upload.html",
-        controller: function uploadController($scope, $localStorage, $http, Datas) {
+        controller: function uploadController($scope, $localStorage, $http, $httpParamSerializer) {
 
 
             $scope.files = [];
@@ -12,26 +12,6 @@ angular.
             var storage = $localStorage.upload ? $localStorage.upload : []
             var count = 0;
 
-
-
-            /*
-            TODO pouvoir changer le nom et supprimer un element
-            */
-            /* $scope.test = function (ev, file) {
- 
-                 let tdBefore = $(angular.element(ev.target))
- 
-                 let test = tdBefore.append(`<input value="${ev.target.innerText}"><i class="fas fa-check"></i><i class="fas fa-times"></i>`)
-                 console.log(test)
-                 console.log(file)
- 
-             }
- 
-             $scope.test2 = function (ev, file) {
-                 console.log(ev)
-                 console.log(file)
- 
-             }*/
 
             $scope.removeElt = function (index) {
                 $scope.files.splice(index, 1)
@@ -50,12 +30,15 @@ angular.
                 storage.push(objUpload)
 
                 $localStorage.upload = storage;
-                console.log($scope.files)
+                
 
-                /*$http({
+                $http({
                     method: 'POST',
-                    url: 'controllers/test.php',
-                    data: JSON.stringify($scope.files),
+                    url: 'controllers/test2.php',
+                    data:{
+                        'comment':self.comment,
+                        'data':$scope.files
+                    },
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 
                 }).then(function successCallback(response) {
@@ -63,7 +46,11 @@ angular.
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                });*/
+                });
+
+                /*
+                service
+                */
                 //Datas.post(JSON.stringify($scope.files))
 
                 clearScope();
@@ -84,8 +71,7 @@ angular.
             function uploadFile(name, size, type, date, src) {
                 this.name = name;
                 this.size = size;
-                this.type = type;
-                this.date = date;
+                this.type = type;                
                 this.src = src
             }
 
@@ -116,6 +102,7 @@ angular.
 
                         }, 1000);
                     }
+
                 });
 
             }

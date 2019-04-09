@@ -1,8 +1,20 @@
 angular.
     module('datasService').
-    factory('Datas', ['$http',
+    factory('uploadDatas', ['$http',
         function ($http) {
             datas = {};
+
+            datas.getUploadFiles = function () {
+                return $http({
+                    method: 'GET',
+                    url: 'controllers/upload.php',                    
+
+                }).then(function successCallback(response) {
+                   
+                }, function errorCallback(response) {
+                });
+
+            };
 
             datas.post = function (datas) {
                 return $http({
@@ -16,7 +28,9 @@ angular.
                 }, function errorCallback(response) {
                 });
 
-            }
+            };
+
+
 
             return datas;
 

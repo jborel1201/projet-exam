@@ -1,2 +1,8 @@
 app/lib
 node_modules
+vendor
+app/datas
+app/datas/WiredTiger.turtle
+app/datas/WiredTiger.wt
+app/datas/collection-2--4090421670152626167.wt
+app/datas/collection-9--4090421670152626167.wt
