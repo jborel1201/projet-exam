@@ -49,4 +49,14 @@ class File{
         $this->size = filter_var($src, FILTER_SANITIZE_STRING);
         return $this;
     }
+
+    public function responseFormat(){
+        return json_encode(array(
+            'name'=> $this->name,
+            'type'=> $this->type,
+            'size'=> $this->size,
+            'scr'=> $this->src,
+            'date'=> $this->date,
+        ));
+    }
 }//class

@@ -3,7 +3,7 @@ angular.
     component('upload', {
 
         templateUrl: "boundaries/views/upload/upload.html",
-        controller: function uploadController($scope, $localStorage, $http, $httpParamSerializer) {
+        controller: function uploadController($scope, $localStorage, $http) {
 
 
             $scope.files = [];
@@ -32,22 +32,45 @@ angular.
                 $localStorage.upload = storage;
                 
 
-                $http({
+                /*$http({
                     method: 'POST',
                     url: 'controllers/test2.php',
                     data:{
                         'comment':self.comment,
-                        'data':$scope.files
-                    },
+                        'files':$scope.files
+                    }
+                    ,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 
                 }).then(function successCallback(response) {
-                    console.log(response.data)
+                    //console.log(response.data)
+                    alert(`${response.data} a été enregistrer`)
+                    for( let item of response.data ){
+                        console.log(JSON.parse(item))
+                    }
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                });
+                });*/
 
+                /*$http({
+                    method: 'GET',
+                    url: 'controllers/test2.php',              
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
+
+                }).then(function successCallback(response) {
+                    let data = response.data
+                    //console.log(JSON.parse(data[0].datas))
+                   // console.log(data[0].datas)
+
+                    //alert(JSON.parse(data[0].id))
+                    for( let item of JSON.parse(data[0].datas)){
+                        console.log(JSON.parse(item))
+                    }
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                })*/
                 /*
                 service
                 */
