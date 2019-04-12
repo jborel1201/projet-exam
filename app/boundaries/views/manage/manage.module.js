@@ -1,3 +1,4 @@
 angular.module('manage',[
-    'ngStorage'   
+    'ngStorage',
+    'datasService'   
 ]);

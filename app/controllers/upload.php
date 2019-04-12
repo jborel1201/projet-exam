@@ -1,12 +1,12 @@
 <?php
-include '../../entities/File.php';
-
+require '../../vendor/autoload.php';
+include '../entities/File.php';
 $collection = (new MongoDB\Client)->gallery->upload;
 $method = $_SERVER['REQUEST_METHOD'];
 $param = json_decode(file_get_contents('php://input'));
 
 
-function insert($param,$collection)
+function insert($param, $collection)
 {
     //récupération et traitement du commentaire
     $comment = filter_var($param->comment, FILTER_SANITIZE_STRING);
@@ -22,23 +22,51 @@ function insert($param,$collection)
         array_push($arrayFiles, $data->responseFormat());
     }
 
-
-    $insert = $collection->insertOneResult([
+    $date = new DateTime();
+    $insert = $collection->insertOne([
         'comment' => $comment,
-        'datas' => json_encode($arrayFiles)
+        'date' => $date->format('d-m-Y H:i:s'),
+        'datas' => $arrayFiles
     ]);
 
-    return $insert->getInsertedCount();
+    $result = $insert->getInsertedCount();
+    echo($result);
 }
 
 
-function select($collection){
+function select($collection)
+{
     $cursor = $collection->find();
 
     $arrayResult = [];
-    foreach($cursor as $document){
-        array_push($arrayResult,$document);
+    foreach ($cursor as $document) {
+        $arrayItem = [
+            'id' => $document['_id'],
+            'date' => $document['date'],
+            'comment' => $document['comment'],
+            'datas' => $document['datas']
+        ];
+        array_push($arrayResult, $arrayItem);
     }
 
-    return(json_encode($arrayResult));
+    echo (json_encode($arrayResult));
 }
+
+
+switch ($method) {
+    case "GET":
+        select($collection);
+        break;
+    case "POST":
+        insert($param, $collection);
+        break;
+}
+//select($collection);
+/*$paramId = filter_input($_GET, 'id', FILTER_SANITIZE_STRING);
+function deleteOne($paramId, $collection)
+{
+
+    $delete = $collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($paramId)]);
+
+    return $delete->getDeletedCount();
+}*/

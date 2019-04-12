@@ -3,7 +3,7 @@ angular.
     component('upload', {
 
         templateUrl: "boundaries/views/upload/upload.html",
-        controller: function uploadController($scope, $localStorage, $http) {
+        controller: function uploadController($scope, $localStorage, $http,UploadDatas) {
 
 
             $scope.files = [];
@@ -30,47 +30,67 @@ angular.
                 storage.push(objUpload)
 
                 $localStorage.upload = storage;
-                
+
+                var datas = {
+                    'comment':self.comment,
+                    'files':$scope.files
+                }
+
+                UploadDatas.post(datas).then(function successCallback(response) {
+                   alert(response.data)
+                    //alert(`${response.data} a été enregistrer`)
+                    /*for( let item of response.data ){
+                        console.log(JSON.parse(item))
+                    }*/
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+
 
                 /*$http({
-                    method: 'POST',
+                    method: 'GET',
                     url: 'controllers/test2.php',
-                    data:{
-                        'comment':self.comment,
-                        'files':$scope.files
-                    }
-                    ,
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
 
                 }).then(function successCallback(response) {
-                    //console.log(response.data)
-                    alert(`${response.data} a été enregistrer`)
-                    for( let item of response.data ){
-                        console.log(JSON.parse(item))
+                    let data = response.data
+                    //console.log(data[0].id.$oid)
+                    //console.log(JSON.parse(data[0].datas))
+                    // console.log(data[0].datas)
+
+                    //alert(JSON.parse(data[0].id))
+                    /*for( let item of data[0].datas){
+                        console.log(item.id);
                     }
+                    //var testDelete = data[0].id.$oid;
+
+                    testDelete.id = data[0].id;
+                    testDelete.comment = data[0].comment;
+                    testDelete.datas = data[0].datas;
+
+                    $http({
+
+                        method: 'DELETE',
+                        url: `controllers/test.php?id=${testDelete}`,
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+
+                    }).then(function successCallback(response) {
+                        console.log(response.data)
+
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+
+
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
                 });*/
 
-                /*$http({
-                    method: 'GET',
-                    url: 'controllers/test2.php',              
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
 
-                }).then(function successCallback(response) {
-                    let data = response.data
-                    //console.log(JSON.parse(data[0].datas))
-                   // console.log(data[0].datas)
-
-                    //alert(JSON.parse(data[0].id))
-                    for( let item of JSON.parse(data[0].datas)){
-                        console.log(JSON.parse(item))
-                    }
-                }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                })*/
                 /*
                 service
                 */
@@ -91,11 +111,12 @@ angular.
 
 
             // modele objet file
-            function uploadFile(name, size, type, date, src) {
+            function uploadFile(name, size, type, src) {
                 this.name = name;
                 this.size = size;
-                this.type = type;                
+                this.type = type;
                 this.src = src
+
             }
 
             // lecture des fichiers et ajout au tableau
@@ -105,7 +126,7 @@ angular.
 
                 //lecture du fichier et création de l'objet file à transférer
                 reader.addEventListener("load", function () {
-                    fileRead = new uploadFile(file.name, file.size, file.type, new Date(), this.result);
+                    fileRead = new uploadFile(file.name, file.size, file.type, this.result);
                 }, false);
                 reader.readAsDataURL(file);
                 //ajout au scope des fichiers lus
@@ -157,31 +178,6 @@ angular.
                 [].forEach.call(filesList, readAndAddFile);
                 //reset
                 $(this).val('')
-
-
-
-                /*$.ajax({
-                    type: 'POST',
-                    url: 'controllers/test.php',
-                    data: JSON.stringify($scope.files),
-                    headers : {'Content-Type': 'application/x-www-form-urlencoded'},
-                    success: function (data) {
-                        console.log(data);
-                    }
-                });*/
-
-                /*$http({
-                    method: 'POST',
-                    url: 'controllers/test.php',
-                    data: JSON.stringify($scope.files),
-                  }).then(function successCallback(response) {
-                      console.log(response)
-                    }, function errorCallback(response) {
-                      // called asynchronously if an error occurs
-                      // or server returns response with an error status.
-                    });*/
-
-
 
             });
 

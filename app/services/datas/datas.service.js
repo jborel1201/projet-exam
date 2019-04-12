@@ -1,38 +1,30 @@
 angular.
     module('datasService').
-    factory('uploadDatas', ['$http',
+    factory('UploadDatas', ['$http',
         function ($http) {
-            datas = {};
+            method = {};
 
-            datas.getUploadFiles = function () {
+            method.getUploadFiles = function () {
                 return $http({
                     method: 'GET',
-                    url: 'controllers/upload.php',                    
-
-                }).then(function successCallback(response) {
-                   
-                }, function errorCallback(response) {
+                    url: 'controllers/upload.php',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }                 
                 });
+            }
 
-            };
-
-            datas.post = function (datas) {
+            method.post = function (datas) {
                 return $http({
                     method: 'POST',
-                    url: 'controllers/test.php',
+                    url: 'controllers/upload.php',
                     data: datas,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 
-                }).then(function successCallback(response) {
-                   
-                }, function errorCallback(response) {
                 });
-
-            };
-
+            }
 
 
-            return datas;
+
+            return method;
 
         }
     ]);

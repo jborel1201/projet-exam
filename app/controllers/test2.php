@@ -2,22 +2,22 @@
 require '../../vendor/autoload.php';
 include '../entities/File.php';
 
-/*$data = json_decode(file_get_contents('php://input'));
+//$data = json_decode(file_get_contents('php://input'));
 
 //var_dump($_POST['data']);
 
 //$name = filter_input(INPUT_POST,'name', FILTER_SANITIZE_STRING);
+//echo(json_encode($data))
 
-
-$table = [];
-foreach ($data as $item) {
-  $data = new File();
-  $data
+/*$table = [];
+foreach ($data->files as $item) {
+  $datat = new File();
+  $datat
     ->setName($item->name)
     ->setType($item->type)
     ->setSize($item->size);
 
-array_push($table,$data->responseFormat());
+array_push($table,$datat->responseFormat());
 
 }
 
@@ -26,7 +26,8 @@ echo (json_encode($table));*/
 
 $collection = (new MongoDB\Client)->gallery->upload;
 $method = $_SERVER['REQUEST_METHOD'];
-/*$param = json_decode(file_get_contents('php://input'));
+$param = json_decode(file_get_contents('php://input'));
+//var_dump($param->object);
 
 function insert($param,$collection)
 {
@@ -39,15 +40,16 @@ function insert($param,$collection)
         $data
             ->setName($file->name)
             ->setType($file->type)
-            ->setSize($file->size)
+            ->setSize($file->size)            
             ->setSrc($file->src);
         array_push($arrayFiles, $data->responseFormat());
     }
 
-
-    $insert = $collection->insertOne([
+    $date = new DateTime();
+    $insert = $collection->insertOne([        
         'comment' => $comment,
-        'datas' => json_encode($arrayFiles)
+        'date' => $date->format('d-m-Y H:i:s'),
+        'datas' => $arrayFiles
     ]);
 
     return $insert->getInsertedCount();
@@ -55,7 +57,9 @@ function insert($param,$collection)
 
 $result = insert($param,$collection);
 
-echo($result);*/
+echo($result);
+
+
 function select($collection){
     $cursor = $collection->find();
 
@@ -73,5 +77,10 @@ function select($collection){
 }
 
 echo(select($collection));
+
+
+
 ?>
+
+
 
