@@ -2,7 +2,7 @@
   "name": "angular-images",
   "private": true,
   "version": "0.0.3",
-  "description": "affiche images",
+  "description": "mini appli de gestion d'upload de fichiers",
   "repository": "",
   "license": "MIT",
   "dependencies": {
@@ -11,7 +11,7 @@
     "angular-resource": "1.7.x",
     "angular-route": "1.7.x",
     "ng-storage": "0.3.x",
-    "bootstrap": "3.3.x",
+    "bootstrap": "^3.3.x",
     "bootswatch": "^4.3.1",
     "jquery": "3.3.x"
   },

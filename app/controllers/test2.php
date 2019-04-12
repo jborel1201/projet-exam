@@ -1,6 +1,6 @@
 <?php
 require '../../vendor/autoload.php';
-include '../entities/File.php';
+include '../model/entities/File.php';
 
 //$data = json_decode(file_get_contents('php://input'));
 

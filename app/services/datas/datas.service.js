@@ -8,11 +8,11 @@ angular.
                 return $http({
                     method: 'GET',
                     url: 'controllers/upload.php',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }                 
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
                 });
             }
 
-            method.post = function (datas) {
+            method.insertFiles = function (datas) {
                 return $http({
                     method: 'POST',
                     url: 'controllers/upload.php',
@@ -22,7 +22,13 @@ angular.
                 });
             }
 
-
+            method.deleteDocument = function (id) {
+                return $http({
+                    method: 'DELETE',
+                    url: `controllers/upload.php?id=${id}`,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+            }
 
             return method;
 
