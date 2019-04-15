@@ -1,7 +1,7 @@
 describe('controller : uploadController', function () {
     beforeEach(module('upload'));
 
-    var uploadController, scope;
+   var uploadController, scope;
 
     beforeEach(inject(function ($controller, $rootScope) {
         // The injector unwraps the underscores (_) from around the parameter names when matching

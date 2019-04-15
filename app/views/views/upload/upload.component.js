@@ -3,7 +3,7 @@ angular.
     component('upload', {
 
         templateUrl: "views/views/upload/upload.html",
-        controller: function uploadController($scope, $localStorage, $http,UploadDatas) {
+        controller: function uploadController($scope, UploadDatas) {
 
 
             $scope.files = [];
