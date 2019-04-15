@@ -5,11 +5,11 @@ angular.
         controller: function smallController(Image, $scope) {
 
             var ctrl = this
-
+            //récupération des datas
             ctrl.images = Image.query();
+
+            // fonction d'affichage du menu
             ctrl.selectedImage = null;
-
-
             $scope.openMenu = function (event, image) {
 
                 // Récupération des données de l'élément selectionné
@@ -51,7 +51,6 @@ angular.
                 /*Vérification de la position haute du menu par rapport a l'offsetTop de la div
                 et ajustement si depasse*/
                 (menuTopPosition >= areaOffsetTop) ?
-
                     menu.css({
                         'top': posY - menuHeight + 'px'
                     }) :
@@ -73,7 +72,7 @@ angular.
                 annulation de la visibilité du menu lors du click sur un élément du DOM autre
                 qu'une icone de menu
                 */
-                $(document).on('click',function(){
+                $(document).on('click', function () {
                     menu.addClass("hidden");
                 });
             }

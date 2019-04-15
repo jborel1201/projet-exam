@@ -1,18 +1,26 @@
-.fas {
-    cursor: pointer;
-}
+/*
+Nav
+*/
 
 li {
     list-style: none;
 }
 
-#manageContainer {
+/*
+contenu
+*/
+
+#manage-container {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: stretch;
 }
+
+/*
+zone de sélection
+*/
 
 #folder {
     flex: 0.2;
@@ -22,22 +30,31 @@ li {
     margin: 5px;
 }
 
+/*
+affichage contenu
+*/
+
 #content {
     flex: 1
 }
 
-#vide {
+.fas, .far {
+    cursor: pointer;
+}
+
+/*
+autre
+*/
+
+#empty {
     position: absolute;
     width: 100%;
     height: 100%;
     text-align: center;
 }
 
-.fa-trash-alt {
-    color: red;    
-    font-size:1.2em;
-}
-
-#delete-area{
-    border: 1px solid red;
+.clone-img-drag img {
+    width: 100px;
+    height: 80px;
+    z-index: 999;
 }

@@ -22,6 +22,15 @@ angular.
                 });
             }
 
+            method.updateDocument = function (id,datas) {
+                return $http({
+                    method: 'PUT',                   
+                    url: `controllers/upload.php?id=${id}`,
+                    data: datas,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+            }
+
             method.deleteDocument = function (id) {
                 return $http({
                     method: 'DELETE',

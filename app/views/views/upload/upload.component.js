@@ -8,8 +8,7 @@ angular.
 
             $scope.files = [];
             var self = this;
-            self.comment = "";
-            var storage = $localStorage.upload ? $localStorage.upload : []
+            self.comment = "";          
             var count = 0;
 
 
@@ -22,14 +21,7 @@ angular.
                 clearScope();
             }
 
-            $scope.save = function () {
-                objUpload = {}
-                objUpload.date = new Date();
-                objUpload.comment = self.comment;
-                objUpload.datas = $scope.files;
-                storage.push(objUpload)
-
-                $localStorage.upload = storage;
+            $scope.save = function () {                         
 
                 var datas = {
                     'comment':self.comment,

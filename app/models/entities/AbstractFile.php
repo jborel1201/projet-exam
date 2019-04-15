@@ -8,8 +8,9 @@ abstract class AbstractFile
     protected $size;
     protected $src;
     protected $comment;
+    protected $dateUpload;
 
- 
+
     public function getName()
     {
         return $this->name;
@@ -66,4 +67,15 @@ abstract class AbstractFile
         return $this;
     }
 
+    public function getDateUpload()
+    {
+        return $this->dateUpload;
+    }
+
+    public function setDateUpload($dateUpload)
+    {
+        $this->dateUpload = $dateUpload;
+        return $this;
+    }
+    
 }//class

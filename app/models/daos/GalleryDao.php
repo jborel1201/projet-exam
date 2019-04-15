@@ -1,6 +1,6 @@
 <?php
 
-require_once ENTITIES_PATH . 'FileUpload.php';
+require_once ENTITIES_PATH . 'FileGallery.php';
 require_once ENTITIES_PATH . 'DocumentUpload.php';
 
 class UploadDao

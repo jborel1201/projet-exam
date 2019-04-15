@@ -1,4 +1,3 @@
-angular.module('manage',[
-    'ngStorage',
+angular.module('manage',[    
     'datasService'   
 ]);
