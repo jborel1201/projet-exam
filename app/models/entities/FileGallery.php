@@ -4,8 +4,19 @@ require 'AbstractFile.php';
 
 class FileGallery extends AbstractFile
 {
-    protected $dateValidation;
+    private $id;
+    private $dateValidation;
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
     public function getDateValidation()
     {
         return $this->dateValidation;
@@ -16,14 +27,28 @@ class FileGallery extends AbstractFile
         $this->dateValidation = $dateValidation;
         return $this;
     }
- 
-    public function fileGaleryToArray()
+
+    public function fileGalleryToArray()
     {
 
         return array(
             'name' => $this->name,
             'type' => $this->type,
-            'size' => $this->size,           
+            'size' => $this->size,
+            'src' => $this->src,
+            'dateUpload' => $this->dateUpload,
+            'dateValidation' => $this->dateValidation
+        );
+    }
+
+    public function selectedDocToArray()
+    {
+
+        return array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'type' => $this->type,
+            'size' => $this->size,
             'src' => $this->src,
             'dateUpload' => $this->dateUpload,
             'dateValidation' => $this->dateValidation

@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Fri Apr 05 2019 16:07:55 GMT+0200 (GMT+02:00)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -14,14 +14,15 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [    
+    files: [
       'lib/angular/angular.js',
-      'lib/angular-mocks/angular-mocks.js',    
-      'app.module.js', 
+      'lib/angular-mocks/angular-mocks.js',
+      'app.module.js',
       'services/datas/datas.module.js',
-      'services/datas/datas.service.js',      
-      'views/views/upload/upload.component.spec.js',
+      'services/datas/datas.service.js',
       'views/views/upload/upload.module.js',
+      'views/views/upload/upload.component.spec.js',
+
     ],
 
 

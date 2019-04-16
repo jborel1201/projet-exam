@@ -1,9 +1,8 @@
-angular.module('imgApp', [
-    'ngRoute',    
+angular.module('imgApp', [ 
+    'upload',     
     'showImg',
     'imageService',
     'menu',
-    'galerie',
-    'upload',
+    'galerie',  
     'manage' 
 ]); 

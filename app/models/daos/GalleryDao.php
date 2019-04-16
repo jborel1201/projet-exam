@@ -1,9 +1,8 @@
 <?php
 
 require_once ENTITIES_PATH . 'FileGallery.php';
-require_once ENTITIES_PATH . 'DocumentUpload.php';
 
-class UploadDao
+class GalleryDao
 {
 
     public static function select($collection)
@@ -12,14 +11,17 @@ class UploadDao
 
         $arrayResult = [];
         foreach ($cursor as $document) {
-            $object = new DocumentUpload();
-            $object
-                ->setId($document['_id'])
-                ->setComment($document['comment'])
-                ->setDateUpload($document['dateUpload'])
-                ->setDatas($document['datas']);
+            $data = new FileGallery();
+            $data
+                ->setId($document->id)
+                ->setName($document->name)
+                ->setType($document->type)
+                ->setSize($document->size)
+                ->setSrc($document->src)
+                ->setDateUpload($document->dateUpload)
+                ->setDateValidation($document->dateValidation);
 
-            array_push($arrayResult, $object->selectedDocToArray());
+            array_push($arrayResult, $data->selectedDocToArray());
         }
 
         return json_encode($arrayResult);
@@ -28,63 +30,21 @@ class UploadDao
 
     public static function insert($param, $collection)
     {
-        $comment = filter_var($param->comment, FILTER_SANITIZE_STRING);
 
-        //création d'un array d'objet php 
-        $arrayFiles = [];
         $date = new DateTime();
-        $dateUpload = $date->format('d-m-Y H:i:s');
-        foreach ($param->files as $file) {
-            $data = new FileUpload();
-            $data
-                ->setName($file->name)
-                ->setType($file->type)
-                ->setSize($file->size)
-                ->setSrc($file->src)
-                ->setDateUpload($dateUpload);
-            array_push($arrayFiles, $data->fileUploadToArray());
-        }
+        $dateValidation = $date->format('d-m-Y H:i:s');
 
-        //création d'un object collection à inserer dans mongo
-        $object = new DocumentUpload();
-        $object
-            ->setComment($comment)
-            ->setDatas($arrayFiles)
-            ->setDateUpload($dateUpload);
+        $data = new FileGallery();
+        $data
+            ->setName($param->name)
+            ->setType($param->type)
+            ->setSize($param->size)
+            ->setSrc($param->src)
+            ->setDateUpload($param->dateUpload)
+            ->setDateValidation($dateValidation);
 
-        $insert = $collection->insertOne($object->docUploadToArray());
+        $insert = $collection->insertOne($data->fileGalleryToArray());
 
         return $insert->getInsertedCount();
-    }
-
-    public static function update($param, $paramId, $collection)
-    {
-
-        $arrayFiles = [];
-        foreach ($param->files as $file) {
-            $data = new FileUpload();
-            $data
-                ->setName($file->name)
-                ->setType($file->type)
-                ->setSize($file->size)
-                ->setSrc($file->src)
-                ->setDateUpload($file->dateUpload);
-            array_push($arrayFiles, $data->fileUploadToArray());
-        }
-
-        $update = $collection->updateOne(
-            ['_id' => new MongoDB\BSON\ObjectId($paramId)],
-            ['$set' => ['datas' => $arrayFiles]]
-        );
-
-        return $update->getModifiedCount();
-    }
-
-    public static function delete($paramId, $collection)
-    {
-
-        $delete = $collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($paramId)]);
-
-        return $delete->getDeletedCount();
     }
 }//class

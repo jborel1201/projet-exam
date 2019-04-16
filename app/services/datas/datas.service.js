@@ -22,9 +22,9 @@ angular.
                 });
             }
 
-            method.updateDocument = function (id,datas) {
+            method.updateDocument = function (id, datas) {
                 return $http({
-                    method: 'PUT',                   
+                    method: 'PUT',
                     url: `controllers/upload.php?id=${id}`,
                     data: datas,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -42,4 +42,31 @@ angular.
             return method;
 
         }
-    ]);
+    ]).
+    factory('GalleryDatas', ['$http',
+        function ($http) {
+            method = {};
+
+            method.getFilesInGallery = function () {
+                return $http({
+                    method: 'GET',
+                    url: 'controllers/gallery.php',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
+                });
+            }
+
+            method.insertFilesInGallery = function (datas) {
+                return $http({
+                    method: 'POST',
+                    url: 'controllers/gallery.php',
+                    data: datas,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+
+                });
+            }
+
+            return method;
+
+        }
+    ])
+

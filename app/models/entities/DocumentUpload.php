@@ -1,12 +1,33 @@
 <?php
 
-require 'AbstractDocument.php';
-
-class DocumentUpload extends AbstractDocument
+class DocumentUpload
 {
-
+    private $id;
+    private $datas;
     private $comment;
     private $dateUpload;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function getDatas()
+    {
+        return $this->datas;
+    }
+
+    public function setDatas($datas)
+    {
+        $this->datas = $datas;
+        return $this;
+    }
 
     public function getComment()
     {
