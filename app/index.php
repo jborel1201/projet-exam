@@ -71,6 +71,7 @@
 
 <body>
 
+	<side-menu></side-menu>
 	<div id="view" ng-view></div>
 	
 </body>
