@@ -12,6 +12,7 @@ body {
     flex-direction: row;
     align-items: stretch;
 
+
 }
 
 side-menu{
@@ -21,4 +22,8 @@ side-menu{
 #view {
     flex: 1;
     height: 100%;
+}
+
+.hidden{
+    display: none;
 }

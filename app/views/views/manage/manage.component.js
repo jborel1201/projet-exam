@@ -23,14 +23,16 @@ angular.
             });
 
             //Fonction d'ouverture d'un dossier. 
-            this.openFolder = function (folder, index) {
-                self.comment = folder.comment;
+            this.openFolder = function (folder, index) {                
                 self.date = folder.dateUpload;
                 self.id = folder.id.$oid;
                 self.datas = folder.datas;
                 self.indexActif = index + 1;
 
             }
+
+
+
 
 
             this.up = function (data) {

@@ -13,7 +13,8 @@ class FileUpload extends AbstractFile
             'type' => $this->type,
             'size' => $this->size,
             'dateUpload' => $this->dateUpload,
-            'src' => $this->src
+            'src' => $this->src,
+            'comment' => $this->comment
         );
     }
 }//class

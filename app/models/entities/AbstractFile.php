@@ -63,7 +63,13 @@ abstract class AbstractFile
 
     public function setComment($comment)
     {
-        $this->comment = filter_var($comment, FILTER_SANITIZE_STRING);
+
+        $arrayCom = [];
+        foreach ($comment as $com) {
+            $inputCom = filter_var($com, FILTER_SANITIZE_STRING);
+            array_push($arrayCom, $inputCom);
+        }
+        $this->comment = $arrayCom;
         return $this;
     }
 
@@ -77,5 +83,4 @@ abstract class AbstractFile
         $this->dateUpload = $dateUpload;
         return $this;
     }
-    
 }//class

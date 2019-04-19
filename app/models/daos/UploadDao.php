@@ -14,8 +14,7 @@ class UploadDao
         foreach ($cursor as $document) {
             $object = new DocumentUpload();
             $object
-                ->setId($document['_id'])
-                ->setComment($document['comment'])
+                ->setId($document['_id'])                
                 ->setDateUpload($document['dateUpload'])
                 ->setDatas($document['datas']);
 
@@ -28,27 +27,27 @@ class UploadDao
 
     public static function insert($param, $collection)
     {
-        $comment = filter_var($param->comment, FILTER_SANITIZE_STRING);
 
         //création d'un array d'objet php 
         $arrayFiles = [];
         $date = new DateTime();
         $dateUpload = $date->format('d-m-Y H:i:s');
         foreach ($param->files as $file) {
+            var_dump($file->comment);
             $data = new FileUpload();
             $data
                 ->setName($file->name)
                 ->setType($file->type)
                 ->setSize($file->size)
                 ->setSrc($file->src)
+                ->setComment($file->comment)
                 ->setDateUpload($dateUpload);
             array_push($arrayFiles, $data->fileUploadToArray());
         }
 
         //création d'un object collection à inserer dans mongo
         $object = new DocumentUpload();
-        $object
-            ->setComment($comment)
+        $object           
             ->setDatas($arrayFiles)
             ->setDateUpload($dateUpload);
 
@@ -68,6 +67,7 @@ class UploadDao
                 ->setType($file->type)
                 ->setSize($file->size)
                 ->setSrc($file->src)
+                ->setComment($file->comment)
                 ->setDateUpload($file->dateUpload);
             array_push($arrayFiles, $data->fileUploadToArray());
         }

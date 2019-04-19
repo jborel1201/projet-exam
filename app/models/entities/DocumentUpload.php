@@ -3,8 +3,7 @@
 class DocumentUpload
 {
     private $id;
-    private $datas;
-    private $comment;
+    private $datas;   
     private $dateUpload;
 
     public function getId()
@@ -29,17 +28,7 @@ class DocumentUpload
         return $this;
     }
 
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-        return $this;
-    }
-
+    
     public function getDateUpload()
     {
         return $this->dateUpload;
@@ -54,8 +43,7 @@ class DocumentUpload
     public function docUploadToArray()
     {
         return array(
-            'dateUpload' => $this->dateUpload,
-            'comment' => $this->comment,
+            'dateUpload' => $this->dateUpload,            
             'datas' => $this->datas
         );
     }
@@ -65,7 +53,6 @@ class DocumentUpload
         return array(
             'id' => $this->id,
             'dateUpload' => $this->dateUpload,
-            'comment' => $this->comment,
             'datas' => $this->datas
         );
     }
