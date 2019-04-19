@@ -4,5 +4,6 @@ angular.module('imgApp', [
     'imageService',
     'menu',
     'galerie',  
-    'manage' 
+    'manage',
+    'sideMenu' 
 ]); 

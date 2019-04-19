@@ -8,9 +8,17 @@ body {
     height: 100vh;
     padding: 10px;
     overflow: hidden;
+    display:flex;
+    flex-direction: row;
+    align-items: stretch;
+
+}
+
+side-menu{
+    width: 60px;
 }
 
 #view {
-    width: 100%;
+    flex: 1;
     height: 100%;
 }

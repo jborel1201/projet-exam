@@ -52,6 +52,8 @@
 	<script src="views/components/gal-medium/gal-medium.component.js"></script>
 	<script src="views/components/gal-small/gal-small.module.js"></script>
 	<script src="views/components/gal-small/gal-small.component.js"></script>
+	<script src="views/components/side-menu/side-menu.module.js"></script>
+	<script src="views/components/side-menu/side-menu.component.js"></script>
 	<!----------Import services--------------------->
 	<script src="services/image.module.js"></script>
 	<script src="services/image.service.js"></script>
@@ -69,6 +71,7 @@
 
 <body>
 
+	<side-menu></side-menu>
 	<div id="view" ng-view></div>
 	
 </body>
