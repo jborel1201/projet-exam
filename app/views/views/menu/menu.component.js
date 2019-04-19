@@ -10,5 +10,9 @@ angular.
                 $window.location.href = '#!/' + direction
             }
 
+            $scope.redirectMobile = function(){
+                $window.location.href = 'www/index.html'
+            }
+
         }
     });

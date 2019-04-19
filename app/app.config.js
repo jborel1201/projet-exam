@@ -14,7 +14,7 @@ angular.
         }).
         when('/manage', {
           template: '<manage></manage>'
-        }).             
+        }).                 
         otherwise('/');
     }
   ]);
