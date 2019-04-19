@@ -32,6 +32,10 @@ angular.
             }
 
 
+            this.showComment = function(data){
+                self.comment = data;
+                $('#comment').removeClass('hidden')
+            }
 
 
 

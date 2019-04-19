@@ -23,7 +23,7 @@
                 <div class="col-4" ng-repeat="data in $ctrl.datas">
                     <div class="card mb-3 draggable">
                         <h3 class="card-header">{{data.name}}</h3>
-                        <img style="height: 200px; width: 100%; display: block;" ng-src="{{data.src}}" alt="Card image">
+                        <img style="height: auto; max-width: 100%; max-height: 200px ;display: block;" ng-src="{{data.src}}" alt="Card image">
                         <div class="card-body">
                             <p class="card-text">Date Upload: {{data.dateUpload | date:'dd-MM-yyyy HH:mm:ss'}}</p>
                             <p class="card-text">Taille: {{data.size}} bytes</p>
@@ -36,7 +36,7 @@
                             <span class="btn btn-outline-danger" ng-click="$ctrl.up(data)">
                                 <i class="far fa-trash-alt"></i>
                             </span>
-                            <span class="btn btn-outline-info">
+                            <span class="btn btn-outline-info" ng-if="data.comment.length>0" ng-click="$ctrl.showComment(data.comment)">
                                 <i class="fas fa-ellipsis-v"></i>
                             </span>
                         </div>
@@ -50,4 +50,10 @@
     <div id="empty" ng-if="$ctrl.storage.length==0">
         <h1>Fichier Vide</h1>
     </div>
+
+    <ul class="list-group hidden" id="comment">
+            <li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="com in $ctrl.comment">
+                {{com}}
+            </li>           
+          </ul>
 </div>

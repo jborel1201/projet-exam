@@ -56,3 +56,10 @@ autre
     overflow-y: scroll;
     overflow-x: visible;
 }
+
+#comment {
+    position: absolute;
+    z-index: 999;
+    right: 0;
+    top: 0;
+}
