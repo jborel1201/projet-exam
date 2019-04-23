@@ -1,63 +1,21 @@
+/*************************************
+Affichage des fichiers chargés
+*/
 #upload-files-content {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    height: 100%
+    max-height: 100%
 }
 
 /*
-Nav-bar
+ Table
 */
-
-.navbar {
-    height: 60px;
-    padding: 10px
-}
-
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    cursor: inherit;
-    display: block;
-}
-
-#dragDropUpload {
-    width: 300px;
-}
-
-.styleDragDrop {
-    background-color: #FFFFFF;
-    border: #FFFFFF
-}
-
-/*
-Progress-bar
-*/
-
-.progress {
-    height: 20px;
-}
-
 
 table {
-    flex: 1;
+ 
     display: flex;
-    flex-direction: column;
-    max-height: 100%;
+    flex-direction: column;    
     width: 100%;
+    max-height: calc(100vh - 150px);
     padding: 10px;
 }
 
@@ -86,12 +44,21 @@ tbody {
     overflow: auto;
 }
 
-.fas, .far {
-    cursor: pointer;
+#container-icon-upload {
+    display: flex;
+    flex-direction: row
 }
 
-.test {
-    background-color: #FFFFFF
+.icon-upload {
+    font-size: 2em;
+    flex: 1
+}
+
+/*
+Validation upload
+*/
+#validation-upload{
+    height: 150px;
 }
 
 .fa-check, .fa-times {
@@ -107,29 +74,96 @@ tbody {
     color: #F0615B
 }
 
-.form-group {
-    height: 60px
-}
-
-#container-icon-upload {
-    display: flex;
-    flex-direction: row
-}
-
-.icon-upload {
-    font-size: 2em;
-    flex:1
-}
-
-#private-com-input{
-    position : absolute;
-    z-index:900;
-    
-}
-.footer-input{
+/*******************************
+compteur de fichiers chargés
+*/
+#counter-files-upload{
+    position: absolute;
+    width:10%;
+    bottom:0;
+    right: 0;
     display:flex;
-    flex-direction:row;
+    flex-direction: row;
+    justify-content: space-between
 }
-.footer-input button{
+
+#counter-files-upload *{
     flex:1
 }
+
+#counter-files-upload i{
+    font-size: 5em;
+}
+
+/*******************************
+Input commentaire spécifique
+*/
+#private-com-input {
+    position: absolute;
+    z-index: 900;
+}
+
+.footer-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-input button {
+    flex: 1
+}
+
+/*********************************
+global
+*/
+
+.fas{
+    cursor: pointer;
+}
+
+/**************************************
+zone d'upload
+*/
+#form-input-files{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -400px;
+    width: 800px;
+    height: 400px;
+    border: 4px dashed #000;
+}
+
+#form-input-files p {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    line-height: 170px;
+    color: #000;
+    font-family: Arial;
+}
+
+#form-input-files i {
+    font-size: 5em;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    padding:0.5em
+}
+
+#form-input-files input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+}
+
+#form-input-files button:active {
+    border: 0;
+}
+
+
+

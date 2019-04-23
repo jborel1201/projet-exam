@@ -21,22 +21,19 @@
         <div class="container-fluid" id="content-cards">
             <div class="row">
                 <div class="col-4" ng-repeat="data in $ctrl.datas">
-                    <div class="card mb-3 draggable">
+                    <div class="card mb-3 draggable" ng-mousedown="$ctrl.startDrag(data)">
                         <h3 class="card-header">{{data.name}}</h3>
-                        <img style="height: auto; max-width: 100%; max-height: 200px ;display: block;" ng-src="{{data.src}}" alt="Card image">
+                        <img ng-src="{{data.src}}" alt="Card image">
                         <div class="card-body">
                             <p class="card-text">Date Upload: {{data.dateUpload | date:'dd-MM-yyyy HH:mm:ss'}}</p>
                             <p class="card-text">Taille: {{data.size}} bytes</p>
                             <p class="card-text">Type: {{data.type}}</p>
                         </div>
-                        <div class="card-footer text-muted">
-                            <span class="btn btn-outline-success">
-                                <i class="fas fa-check"></i>
-                            </span>
-                            <span class="btn btn-outline-danger" ng-click="$ctrl.up(data)">
+                        <div class="card-footer text-muted">                            
+                            <span class="btn btn-outline-danger"  ng-click="$event.preventDefault();$ctrl.deleteElement(data)">
                                 <i class="far fa-trash-alt"></i>
                             </span>
-                            <span class="btn btn-outline-info" ng-if="data.comment.length>0" ng-click="$ctrl.showComment(data.comment)">
+                            <span class="btn btn-outline-info" ng-if="$event.preventDefault();$event.stopPropagation();data.comment.length>0" ng-click="$ctrl.showComment(data.comment)">
                                 <i class="fas fa-ellipsis-v"></i>
                             </span>
                         </div>

@@ -1,34 +1,8 @@
 <link rel="stylesheet" href="/app/views/views/upload/upload.css">
 
-<div id="upload-files-content">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarColor03">
+<div ng-if="files.length > 0" id="#upload-files-content">
 
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-
-            <ul class="navbar-nav center">
-                <li class="nav-item">
-                    <span class="btn btn-outline-primary btn-file" id="dragDropUpload">
-                        <i class="fas fa-file-upload"><input type="file" class=" inputFile" multiple></i>
-                    </span>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto">
-
-            </ul>
-
-        </div>
-    </nav>
-
-    <div class="progress hidden">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar"
-            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-    </div>
-
-    <table ng-if="files.length > 0" class="table table-hover" id="filesUpload">
+    <table class="table table-hover" id="filesUpload">
         <thead>
             <tr>
                 <th scope="col">Image</th>
@@ -41,7 +15,7 @@
         <tbody>
             <tr class="table-dark" ng-repeat="file in files">
                 <td scope="row"><img ng-src="{{file.src}}"></td>
-                <td ng-click='test($event,file)'> {{file.name}}</td>
+                <td>{{file.name}}</td>
                 <td>{{file.size}}</td>
                 <td>{{file.type}}</td>
                 <td id="container-icon-upload">
@@ -54,27 +28,36 @@
     </table>
 
 
-    <div ng-if="files.length > 0">
-        <div class="form-group">
-            <label for="com">Commentaires</label>
-            <input type="text" class="form-control" id="com" ng-model="$ctrl.globalComment"></input>
-        </div>
+    <div id="validation-upload">
+
+        <label for="com">Commentaires</label>
+        <input type="text" class="form-control" id="com" ng-model="$ctrl.globalComment">
+
         <i class="fas fa-check" ng-click="save()"></i>
         <i class="fas fa-times" ng-click="removeAll()"></i>
     </div>
 
+</div>
 
-    <div class="card text-white bg-dark mb-3 hidden" style="max-width: 20rem;" id="private-com-input">
-        <div class="card-header">Ajouter un commentaire:</div>
-        <div class="card-body">
-            <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="$ctrl.privateComment"></textarea>
-        </div>
-        <div class="card-footer footer-input">
-            <button type="button" class="btn btn-primary" ng-click="$ctrl.addCom()">Ajouter</button>
-            <button type="button" class="btn btn-secondary" ng-click="$ctrl.cancelCom()">Fermer</button>
-        </div>
+<form ng-show="files.length == 0" id="form-input-files">
+    <input type="file" multiple id="input-files">
+    <i class="fas fa-cloud-upload-alt"></i>
+    <p>Cliquer sur la zone ou drag and drop les fichiers</p>
+</form>
+
+
+<div class="card text-white bg-dark mb-3 hidden" style="max-width: 20rem;" id="private-com-input">
+    <div class="card-header">Ajouter un commentaire:</div>
+    <div class="card-body">
+        <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="$ctrl.privateComment"></textarea>
     </div>
+    <div class="card-footer footer-input">
+        <button type="button" class="btn btn-primary" ng-click="$ctrl.addCom()">Ajouter</button>
+        <button type="button" class="btn btn-secondary" ng-click="$ctrl.cancelCom()">Fermer</button>
+    </div>
+</div>
 
 
-
+<div id="counter-files-upload" ng-if="$ctrl.visible">
+    <h1>{{$ctrl.count}}/{{$ctrl.numberOfUploadFiles}}</h1><i class="far fa-images"></i>
 </div>

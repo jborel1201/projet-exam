@@ -16,6 +16,7 @@ zone de sélection
 
 #folder {
     flex: 0.2;
+    z-index:1
 }
 
 #folder button {
@@ -34,6 +35,8 @@ affichage contenu
     cursor: pointer;
 }
 
+
+
 /*
 autre
 */
@@ -45,11 +48,6 @@ autre
     text-align: center;
 }
 
-.clone-img-drag img {
-    width: 100px;
-    height: 80px;
-    z-index: 999;
-}
 
 #content-cards {
     max-height: 100%;
@@ -57,9 +55,40 @@ autre
     overflow-x: visible;
 }
 
+#content-cards img{
+    height: auto;
+    width: auto;    
+    max-height: 200px;
+    display: block
+}
+
 #comment {
     position: absolute;
-    z-index: 999;
+    z-index: 998;
     right: 0;
     top: 0;
+}
+
+.selected{
+    background : #3AA2E5
+}
+
+.col-4{
+    padding:10px;
+   
+}
+
+.cloneImgDrop img{
+
+    
+    width: 80px;
+    height: 80px;  
+   
+ 
+
+}
+
+.cloneImgDrop{
+    position:relative;
+    z-index: 999;
 }

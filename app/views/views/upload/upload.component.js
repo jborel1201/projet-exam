@@ -11,14 +11,19 @@ angular.
             self.globalComment = "";
             self.privateComment = "";
 
-            var count = 0;
+
 
             /*/////////////////////////////////////////////////////////////
                        chargement des fichiers/Drag and Drop
            *//////////////////////////////////////////////////////////////
 
+            //Variables de décompte des fichiers chargés
+            self.count = 0;
+            self.numberOfUploadFiles = 0;
+            self.visible = false;
+
             /**
-             *  modele objet file
+             *  object file
              * @param {string} name 
              * @param {int} size 
              * @param {string} type 
@@ -35,14 +40,11 @@ angular.
 
 
             /**
-             * lecture des fichiers et ajout au tableau
-             * @param {*} file 
-             * @param {*} i 
-             * @param {*} files 
+             * callback du foreach exécuté durant l'upload des fichiers
+             * @param {*} file//élément courant            
              */
-            function readAndAddFile(file, i, files) {
+            function readAndAddFile(file) {
                 let reader = new FileReader();
-                let nbFiles = files.length;
 
                 //lecture du fichier et création de l'objet file à transférer
                 reader.addEventListener("load", function () {
@@ -51,19 +53,21 @@ angular.
                 reader.readAsDataURL(file);
                 //ajout au scope des fichiers lus
                 reader.addEventListener("loadend", function () {
-                    //variables avancement progress-bar
-                    count++;
-                    let pourcent = Math.ceil(count * 100 / nbFiles);
+
+                    self.count++;
+
                     //ajout el à $scope.files
                     $scope.$apply(function () {
                         $scope.files.push(fileRead);
                     });
-                    //update progress-bar
-                    $('.progress-bar').css('width', pourcent + '%').attr('aria-valuenow', pourcent);
-                    if ($('.progress-bar').attr('aria-valuenow') == 100) {
-                        setTimeout(function () {
-                            $(".progress").addClass("hidden");
 
+                    //masquage du compte lorsque tous les elements sont chargés
+                    if (self.count == self.numberOfUploadFiles) {
+                        
+                        setTimeout(function () { 
+                            $scope.$apply(function () {
+                                self.visible = false;
+                            });                      
                         }, 1000);
                     }
 
@@ -75,36 +79,30 @@ angular.
              * Drag and Drop events
              */
             $(document)
-                .on('dragover', '#dragDropUpload', function () {
+                .on('dragover', '#form-input-files ', function (e) {
                     $(this).addClass("styleDragDrop");
                     return false;
                 })
-                .on('dragleave', '#dragDropUpload', function () {
+                .on('dragleave', '#form-input-files ', function (e) {
                     $(this).removeClass("styleDragDrop");
                     return false;
                 })
-                .on('drop', '#dragDropUpload', function () {
+                .on('drop', '#form-input-files ', function (e) {
                     $(this).removeClass("styleDragDrop");
                 });
 
-
-            /**
-             * traitement des éléments lors du changement d'état de l'input 
-             */
-            $(".inputFile").on('change', function () {
+            $("#input-files").on('change', function () {
                 //init
                 $scope.files = [];
-                count = 0;
-                $(".progress").removeClass("hidden");
-                //
+                self.count = 0;
+                self.visible = true;
                 var filesList = $(this).get(0).files;
+                self.numberOfUploadFiles = filesList.length;
                 [].forEach.call(filesList, readAndAddFile);
                 //reset
                 $(this).val('')
 
             });
-
-
 
 
 
@@ -152,7 +150,7 @@ angular.
             self.addCom = function () {
                 if (verifCom(self.privateComment)) {
                     itemSelected.comment.push(self.privateComment);
-                }else{
+                } else {
                     alert('Champs vide. Commentaire non Ajouté.');
                 }
 
@@ -262,7 +260,7 @@ angular.
 
             function verifCom(data) {
                 let verif = true
-                if (!data) {                    
+                if (!data) {
                     verif = false;
                 }
                 return verif;
