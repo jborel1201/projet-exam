@@ -1,3 +1,8 @@
 <?php
+
 require ROOT_PATH.'vendor/autoload.php';
-$collectionUpload = (new MongoDB\Client)->gallery->upload;
+
+function defineCollection($collectionName){
+    return (new MongoDB\Client)->gallery->$collectionName;
+}
+

@@ -77,10 +77,3 @@ function select($collection){
 }
 
 echo(select($collection));
-
-
-
-?>
-
-
-

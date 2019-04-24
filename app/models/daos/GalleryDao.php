@@ -7,24 +7,27 @@ class GalleryDao
 
     public static function select($collection)
     {
-        $cursor = $collection->find();
+       
+            $cursor = $collection->find();
 
-        $arrayResult = [];
-        foreach ($cursor as $document) {
-            $data = new FileGallery();
-            $data
-                ->setId($document->id)
-                ->setName($document->name)
-                ->setType($document->type)
-                ->setSize($document->size)
-                ->setSrc($document->src)
-                ->setDateUpload($document->dateUpload)
-                ->setDateValidation($document->dateValidation);
+            $arrayResult = [];
+            foreach ($cursor as $document) {
+                $data = new FileGallery();
+                $data
+                    ->setId($document->id)
+                    ->setName($document->name)
+                    ->setType($document->type)
+                    ->setSize($document->size)
+                    ->setSrc($document->src)
+                    ->setDateUpload($document->dateUpload)
+                    ->setDateValidation($document->dateValidation)
+                    ->setComment($document->comment);
 
-            array_push($arrayResult, $data->selectedDocToArray());
-        }
+                array_push($arrayResult, $data->selectedDocToArray());
+            }
 
-        return json_encode($arrayResult);
+            return json_encode($arrayResult);
+       
     }
 
 
@@ -41,6 +44,7 @@ class GalleryDao
             ->setSize($param->size)
             ->setSrc($param->src)
             ->setDateUpload($param->dateUpload)
+            ->setComment($param->comment)
             ->setDateValidation($dateValidation);
 
         $insert = $collection->insertOne($data->fileGalleryToArray());

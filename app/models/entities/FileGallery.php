@@ -37,7 +37,8 @@ class FileGallery extends AbstractFile
             'size' => $this->size,
             'src' => $this->src,
             'dateUpload' => $this->dateUpload,
-            'dateValidation' => $this->dateValidation
+            'dateValidation' => $this->dateValidation,
+            'comment' => $this->comment
         );
     }
 
@@ -51,7 +52,8 @@ class FileGallery extends AbstractFile
             'size' => $this->size,
             'src' => $this->src,
             'dateUpload' => $this->dateUpload,
-            'dateValidation' => $this->dateValidation
+            'dateValidation' => $this->dateValidation,
+            'comment' => $this->comment
         );
     }
 }//class

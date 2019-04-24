@@ -3,7 +3,7 @@ angular.
     component('manage', {
 
         templateUrl: "views/views/manage/manage.html",
-        controller: function manageController($timeout, UploadDatas, $route) {
+        controller: function manageController($timeout, UploadDatas, GalleryDatas, $route) {
 
             self = this;
 
@@ -14,50 +14,70 @@ angular.
             self.id = null;
             self.indexActif = null;
 
+            self.error = "";
 
             self.drag = function (e) {
                 console.log(e)
             }
 
-            //Récupération des données de la Bd
+
             UploadDatas.getUploadFiles().then(function successCallback(response) {
-                self.storage = response.data;
+                if (response.status == 200) {
+                    self.storage = response.data;
+                }
+                if (response.status == 202) {
+                    console.log('pas de data retournée par la Bd')
+                }
+
             }, function errorCallback(response) {
-                alert(response)
+
+                responseError(response);
             });
 
-            //Fonction d'ouverture d'un dossier. 
+            //Fonction d'ouverture du dossier
+            //initialise les variables avec les datas du fichier
             this.openFolder = function (folder, index) {
                 self.date = folder.dateUpload;
                 self.id = folder.id.$oid;
                 self.datas = folder.datas;
                 self.indexActif = index + 1;
-                test();
+                initDraggable();
             }
 
 
             this.showComment = function (data) {
-                self.comment = data;
+                self.comment = data ? data : [];
                 $('#comment').removeClass('hidden')
             }
 
 
+            function responseError(response) {
+                self.error = response.status.toString() + " " + response.statusText;
+                $('#error').removeClass('hidden');
+            }
+            function alertDataTransfert(response) {
+                if (response != 1) {
+                    alert('Problème lors du transfert des données!')
+                }
+            }
 
             this.deleteElement = function (data) {
                 UpdateUploadBd(data);
-                
             }
 
-
-            function UpdateUploadBd(data){
+            /**
+             * 
+             * @param {*} data 
+             */
+            function UpdateUploadBd(data) {
                 let id = self.id;
 
                 if (self.datas.length == 1) {
 
                     UploadDatas.deleteDocument(id).then(function successCallback(response) {
-                        console.log(response.data);
+                        alertDataTransfert(response.data)
                     }, function errorCallback(response) {
-                        alert(response)
+                        responseError(response);
                     });
                     $route.reload();
 
@@ -66,26 +86,51 @@ angular.
                     self.datas.splice(self.datas.indexOf(data), 1)
 
                     UploadDatas.updateDocument(id, { 'files': self.datas }).then(function successCallback(response) {
-                        console.log(response.data)
+                        alertDataTransfert(response.data)
                     }, function errorCallback(response) {
-                        alert(response)
+                        responseError(response);
                     });
                 }
             }
 
+            self.newCom = ""
+            self.addNewCom = function () {
+
+                if (verifCom(self.newCom)) {
+                    self.comment.push(self.newCom);
+                    self.newCom = "";
+                    $('#comment').addClass('hidden');
+                } else {
+                    alert('Commentaire vide');
+                }
+
+            }
+
+
+
+            self.closeComCard = function () {
+                $('#comment').addClass('hidden');
+            }
 
             var elementDrag = null
             var imgOfElementDrag = null;
+            var nameOfElementDrag = null
             self.startDrag = (data) => {
                 elementDrag = data;
 
                 imgOfElementDrag = elementDrag.src;
+                nameOfElementDrag = elementDrag.name;
 
             }
 
-            test = function () {
-                $timeout(function () {
 
+
+
+            /**
+             * 
+             */
+            initDraggable = function () {
+                $timeout(function () {
 
                     $('.draggable').draggable({
                         revert: true,
@@ -94,65 +139,47 @@ angular.
 
                         helper: function () {
 
-                            var bloc = $("<div class='cloneImgDrop'></div>");
-
-                            bloc.append(`<img src="${imgOfElementDrag}">`);
+                            var bloc =
+                                $(`
+                            <div class='card border-primary mb-3 cloneImgDrop'>
+                                <div class='card-header'>${nameOfElementDrag}</div>
+                                <div class='card-body'>
+                                    <img src=${imgOfElementDrag} style='width:100px'>
+                                </div>
+                            </div>
+                                `);
 
                             return bloc
-
                         }
 
                     });
-
-
-
-
                 });
-
             }
             //Configuration du Droppable
             ////////////////////////////            
             $(".droppable").droppable({
                 tolerance: "pointer",
                 drop: () => {
-                    console.log(elementDrag)
+
                     UpdateUploadBd(elementDrag);
-                    //Récuperation des élements de la drop zone                      
-                    //dropAreaImgList = $scope.dropAreaContent;
-
-                    //Selection des éléments à ajouter dans la drop zone
-                    /*var elementsDropInImages = []
-                    for (i = 0; i < dragElementsList.length; i++) {
-                        elementsDropInImages.push($scope.images[dragElementsList[i].index])
-                        dropAreaImgList.push(dragElementsList[i]);
-                    }
-                    // mise à jours de la vue
-                    $scope.$apply(function () {
-                        for (i = 0; i < elementsDropInImages.length; i++) {
-                            let index = $scope.images.indexOf(elementsDropInImages[i])
-                            $scope.images.splice(index, 1)
-                        }
-
-                        $scope.dropAreaContent = dropAreaImgList;
-
+                    GalleryDatas.insertFilesInGallery(elementDrag).then(function successCallback(response) {
+                        alertDataTransfert(response.data)
+                    }, function errorCallback(response) {
+                        responseError(response)
                     });
 
 
-                    /*$scope.$apply(function () {
-                        dragElementsList.forEach((element) => {
-                            $scope.dropAreaContent.push(element);
-                            $scope.images.splice($scope.images.indexOf(element), 1)
- 
-                        })
- 
- 
-                    })*/
-
-                    //dragElementsList = [];
-
                 }
 
-            })
+            });
+
+            function verifCom(data) {
+                let verif = true
+                if (!data.trim()) {
+                    verif = false;
+                }
+                return verif;
+            }
 
         }
     });

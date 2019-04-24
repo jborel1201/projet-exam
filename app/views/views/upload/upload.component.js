@@ -18,7 +18,8 @@ angular.
            *//////////////////////////////////////////////////////////////
 
             //Variables de décompte des fichiers chargés
-            self.count = 0;
+            self.count = null;
+            var countError = null;
             self.numberOfUploadFiles = 0;
             self.visible = false;
 
@@ -45,33 +46,39 @@ angular.
              */
             function readAndAddFile(file) {
                 let reader = new FileReader();
+                let testDoubleExtension = file.name.split('.');
 
-                //lecture du fichier et création de l'objet file à transférer
-                reader.addEventListener("load", function () {
-                    fileRead = new uploadFile(file.name, file.size, file.type, this.result, []);
-                }, false);
-                reader.readAsDataURL(file);
-                //ajout au scope des fichiers lus
-                reader.addEventListener("loadend", function () {
+                if (/\.(jpe?g|png|gif)$/i.test(file.name) && testDoubleExtension.length == 2) {
+                    //lecture du fichier et création de l'objet file à transférer
+                    reader.addEventListener("load", function () {
+                        fileRead = new uploadFile(file.name, file.size, file.type, this.result, []);
+                    }, false);
+                    reader.readAsDataURL(file);
+                    //ajout au scope des fichiers lus
+                    reader.addEventListener("loadend", function () {
 
-                    self.count++;
+                        self.count++;
 
-                    //ajout el à $scope.files
-                    $scope.$apply(function () {
-                        $scope.files.push(fileRead);
+                        //ajout el à $scope.files
+                        $scope.$apply(function () {
+                            $scope.files.push(fileRead);
+                        });
+
+                        //masquage du compte lorsque tous les elements sont chargés
+                        if (self.count == self.numberOfUploadFiles) {
+
+                            setTimeout(function () {
+                                $scope.$apply(function () {
+                                    self.visible = false;
+                                });
+                            }, 1000);
+                        }
+
                     });
-
-                    //masquage du compte lorsque tous les elements sont chargés
-                    if (self.count == self.numberOfUploadFiles) {
-                        
-                        setTimeout(function () { 
-                            $scope.$apply(function () {
-                                self.visible = false;
-                            });                      
-                        }, 1000);
-                    }
-
-                });
+                } else {
+                    self.count++;
+                    countError++;
+                }
 
             }
 
@@ -95,12 +102,23 @@ angular.
                 //init
                 $scope.files = [];
                 self.count = 0;
+                countError = 0;
                 self.visible = true;
+
+
                 var filesList = $(this).get(0).files;
                 self.numberOfUploadFiles = filesList.length;
                 [].forEach.call(filesList, readAndAddFile);
-                //reset
-                $(this).val('')
+
+                //reset et affiche erreur
+                $(this).val('');
+                if (countError > 0) {
+                    if (countError == 1) {
+                        alert(`${countError} fichier n'a pas été ajouté.\n Problème de format.`)
+                    } else {
+                        alert(`${countError} fichiers n'ont pas été ajoutés.\n Problème de format.`)
+                    }
+                }
 
             });
 
@@ -189,10 +207,7 @@ angular.
 
                 UploadDatas.insertFiles(datas).then(function successCallback(response) {
                     console.log(response.data)
-                    //alert(`${response.data} a été enregistrer`)
-                    /*for( let item of response.data ){
-                        console.log(JSON.parse(item))
-                    }*/
+
                 }, function errorCallback(response) {
 
                 });
@@ -260,7 +275,7 @@ angular.
 
             function verifCom(data) {
                 let verif = true
-                if (!data) {
+                if (!data.trim()) {
                     verif = false;
                 }
                 return verif;

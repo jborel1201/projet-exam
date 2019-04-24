@@ -16,12 +16,12 @@
 
 
     <div id="content" ng-if="$ctrl.storage.length>0">
-     
+
 
         <div class="container-fluid" id="content-cards">
             <div class="row">
                 <div class="col-4" ng-repeat="data in $ctrl.datas">
-                    <div class="card mb-3 draggable" ng-mousedown="$ctrl.startDrag(data)">
+                    <div class="card mb-3">
                         <h3 class="card-header">{{data.name}}</h3>
                         <img ng-src="{{data.src}}" alt="Card image">
                         <div class="card-body">
@@ -29,13 +29,17 @@
                             <p class="card-text">Taille: {{data.size}} bytes</p>
                             <p class="card-text">Type: {{data.type}}</p>
                         </div>
-                        <div class="card-footer text-muted">                            
-                            <span class="btn btn-outline-danger"  ng-click="$event.preventDefault();$ctrl.deleteElement(data)">
+                        <div class="card-footer text-muted">
+                            <span class="btn btn-outline-danger"
+                                ng-click="$event.preventDefault();$ctrl.deleteElement(data)">
                                 <i class="far fa-trash-alt"></i>
                             </span>
-                            <span class="btn btn-outline-info" ng-if="$event.preventDefault();$event.stopPropagation();data.comment.length>0" ng-click="$ctrl.showComment(data.comment)">
-                                <i class="fas fa-ellipsis-v"></i>
+                            <span class="btn btn-outline-info" ng-click="$ctrl.showComment(data.comment)">
+                                <i ng-class="(data.comment.length>0)? 'fas fa-ellipsis-v' : 'fas fa-plus' "></i>
                             </span>
+
+                            <i class="fas fa-expand-arrows-alt draggable" id="drag-drop-icon"
+                                ng-mousedown="$ctrl.startDrag(data)"></i>
                         </div>
                     </div>
                 </div>
@@ -44,13 +48,25 @@
 
     </div>
 
-    <div id="empty" ng-if="$ctrl.storage.length==0">
+    <div id="empty" ng-if="$ctrl.storage.length==0 && $ctrl.error == ''">
         <h1>Fichier Vide</h1>
     </div>
 
-    <ul class="list-group hidden" id="comment">
-            <li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="com in $ctrl.comment">
-                {{com}}
-            </li>           
-          </ul>
+    <div id="error" class="hidden">
+        <h1>{{$ctrl.error}}</h1>
+    </div>
+
+
+    <div class="card mb-3 hidden" id="comment">
+        <i class="fas fa-times" id="close-com-card" ng-click="$ctrl.closeComCard()"></i>
+        <h3 class="card-header">Commentaires</h3>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" ng-repeat="com in $ctrl.comment">{{com}}</li>
+        </ul>
+        <div class="card-footer text-muted">
+            <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="$ctrl.newCom"></textarea>
+            <i class="fas fa-plus-circle" ng-click="$ctrl.addNewCom()"></i>
+        </div>
+    </div>
 </div>

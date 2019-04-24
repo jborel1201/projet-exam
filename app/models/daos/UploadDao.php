@@ -8,13 +8,14 @@ class UploadDao
 
     public static function select($collection)
     {
+        $arrayResult = [];
+
         $cursor = $collection->find();
 
-        $arrayResult = [];
         foreach ($cursor as $document) {
             $object = new DocumentUpload();
             $object
-                ->setId($document['_id'])                
+                ->setId($document['_id'])
                 ->setDateUpload($document['dateUpload'])
                 ->setDatas($document['datas']);
 
@@ -33,21 +34,23 @@ class UploadDao
         $date = new DateTime();
         $dateUpload = $date->format('d-m-Y H:i:s');
         foreach ($param->files as $file) {
-            var_dump($file->comment);
-            $data = new FileUpload();
-            $data
-                ->setName($file->name)
-                ->setType($file->type)
-                ->setSize($file->size)
-                ->setSrc($file->src)
-                ->setComment($file->comment)
-                ->setDateUpload($dateUpload);
-            array_push($arrayFiles, $data->fileUploadToArray());
+            $testDoubleExtension = explode('.',$file->name );
+            if (preg_match("/\b(\.jpg|\.JPG|\.png|\.PNG|\.gif|\.GIF)\b/", $file->name) == 1 && count($testDoubleExtension)==2) {
+                $data = new FileUpload();
+                $data
+                    ->setName($file->name)
+                    ->setType($file->type)
+                    ->setSize($file->size)
+                    ->setSrc($file->src)
+                    ->setComment($file->comment)
+                    ->setDateUpload($dateUpload);
+                array_push($arrayFiles, $data->fileUploadToArray());
+            }
         }
 
         //création d'un object collection à inserer dans mongo
         $object = new DocumentUpload();
-        $object           
+        $object
             ->setDatas($arrayFiles)
             ->setDateUpload($dateUpload);
 
