@@ -1,43 +1,40 @@
 angular.
     module('utilsService').
+    /**
+     * retourne un objet de traitement des inputs
+     */
     factory('InputControl', [
         function () {
             method = {};
-
-            method.isCorrectFileType = function (name) {
-                let isOk = false
+            //Vérification la conformité du fichier à uploader
+            method.isCorrectFileType = function (name) {               
                 let testDoubleExtension = name.split('.');
-                if (/\.(jpe?g|png|gif)$/i.test(name) && testDoubleExtension.length == 2) {
-                    isOk = true;
-                }
-                return isOk;
+                return (/\.(jpe?g|png|gif)$/i.test(name) && testDoubleExtension.length == 2);
             }
-
+            // vérification de la saisie du commentaire
             method.isValidCom = function (com) {
-                let verif = true
-                if (!com.trim()) {
-                    verif = false;
-                }
-                return verif;
+                return com.trim()
             }
-
 
             return method;
-
         }
     ]).
+    /**
+     * retourne un objet de traitement des réponses Ajax
+     */
     factory('AjaxResponse', ['$window',
         function ($window) {
             method = {};
 
             method.responseError = function (response) {
-                return $window.location.href = '#!/?codeError=' + response.status.toString() + '&textError=' + response.statusText;
+                let url = `#!/?codeError=${response.status.toString()}&textError=${response.statusText}`
+                return $window.location.href = url;
             }
 
-            method.alertDataTransfert = function(response) {
-                if (response != 1) {
-                    return alert('Problème lors du transfert des données!')
-                }
+            method.alertDataTransfert = function (response) {
+
+                if (response != 1) { return alert('Problème lors du transfert des données!') }
+
             }
 
             return method;

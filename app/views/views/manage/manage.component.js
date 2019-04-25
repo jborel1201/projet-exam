@@ -48,7 +48,7 @@ angular.
 
             //ajouter un nouveau commentaire
             self.addNewCom = function () {
-                if (InputControl.isValidCom(self.newCom)) {
+                if (InputControl.isValidCom(self.newCom)) {                    
                     self.comments.push(self.newCom);//ajoute un commentaires aux commentaires existant
                     clearCommentBox()
                 } else {
