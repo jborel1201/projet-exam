@@ -1,2 +1,3 @@
-angular.module('menu',[   
+angular.module('menu',[
+    'ngRoute'   
 ]);

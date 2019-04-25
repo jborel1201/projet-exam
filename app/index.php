@@ -59,6 +59,8 @@
 	<script src="services/image.service.js"></script>
 	<script src="services/datas/datas.module.js"></script>
 	<script src="services/datas/datas.service.js"></script>
+	<script src="services/utils/utils.module.js"></script>
+	<script src="services/utils/utils.service.js"></script>
 
 
 	<script src="views/components/show-img/show-img.module.js"></script>

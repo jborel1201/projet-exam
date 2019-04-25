@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/app/views/views/menu/menu.css">
 
-<div id="menu-container">
 
-    
-
+<div ng-if="$ctrl.codeError != null">
+    <h1>{{$ctrl.codeError}}</h1>
+    <h2>{{$ctrl.textError}}</h2>
 </div>

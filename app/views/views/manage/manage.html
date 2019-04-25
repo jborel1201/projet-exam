@@ -2,7 +2,8 @@
 
 <div id="manage-container">
 
-    <div id="folder">
+    <!-----------Affichage des dossiers----------------------->
+    <div id="upload-folder">
         <div class="btn-group-vertical" data-toggle="buttons">
             <button type="button" class="btn btn-primary" ng-repeat="folder in $ctrl.storage"
                 ng-click="$ctrl.openFolder(folder,$index)">
@@ -13,51 +14,44 @@
         </div>
     </div>
 
+    <!----------visualisation image du dossier------------------>
+    <div class="container-fluid" id="cards-container" ng-if="$ctrl.storage.length>0">
+        <div class="row">
+            <div class="col-3" ng-repeat="data in $ctrl.datas">
+                <div class="card mb-3">
+                    <h3 class="card-header">{{data.name}}</h3>
+                    <img style="height: 200px; width:100%; display: block;" ng-src="{{data.src}}" alt="{{data.name}}">
 
+                    <div class="card-body">
+                        <p class="card-text">Date Upload: {{data.dateUpload | date:'dd-MM-yyyy HH:mm:ss'}}</p>
+                        <p class="card-text">Taille: {{data.size}} bytes</p>
+                        <p class="card-text">Type: {{data.type}}</p>
+                    </div>
 
-    <div id="content" ng-if="$ctrl.storage.length>0">
+                    <div class="card-footer text-muted">
+                        <span class="btn btn-outline-danger"
+                            ng-click="$event.preventDefault();$ctrl.deleteElement(data)">
+                            <i class="far fa-trash-alt"></i>
+                        </span>
+                        <span class="btn btn-outline-info" ng-click="$ctrl.showComment(data.comment)">
+                            <i ng-class="(data.comment.length>0)? 'fas fa-ellipsis-v' : 'fas fa-plus' "></i>
+                        </span>
 
-
-        <div class="container-fluid" id="content-cards">
-            <div class="row">
-                <div class="col-4" ng-repeat="data in $ctrl.datas">
-                    <div class="card mb-3">
-                        <h3 class="card-header">{{data.name}}</h3>
-                        <img ng-src="{{data.src}}" alt="Card image">
-                        <div class="card-body">
-                            <p class="card-text">Date Upload: {{data.dateUpload | date:'dd-MM-yyyy HH:mm:ss'}}</p>
-                            <p class="card-text">Taille: {{data.size}} bytes</p>
-                            <p class="card-text">Type: {{data.type}}</p>
-                        </div>
-                        <div class="card-footer text-muted">
-                            <span class="btn btn-outline-danger"
-                                ng-click="$event.preventDefault();$ctrl.deleteElement(data)">
-                                <i class="far fa-trash-alt"></i>
-                            </span>
-                            <span class="btn btn-outline-info" ng-click="$ctrl.showComment(data.comment)">
-                                <i ng-class="(data.comment.length>0)? 'fas fa-ellipsis-v' : 'fas fa-plus' "></i>
-                            </span>
-
-                            <i class="fas fa-expand-arrows-alt draggable" id="drag-drop-icon"
-                                ng-mousedown="$ctrl.startDrag(data)"></i>
-                        </div>
+                        <i class="fas fa-expand-arrows-alt draggable" id="drag-drop-icon"
+                            ng-mousedown="$ctrl.startDrag(data)"></i>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div id="empty" ng-if="$ctrl.storage.length==0 && $ctrl.error == ''">
+    <!---------Texte si dossier vide--------------------->
+    <div id="empty" ng-if="$ctrl.storage.length==0">
         <h1>Fichier Vide</h1>
     </div>
 
-    <div id="error" class="hidden">
-        <h1>{{$ctrl.error}}</h1>
-    </div>
-
-
-    <div class="card mb-3 hidden" id="comment">
+    <!---------Zone de visualisation/saisie commentaire-->
+    <div class="card mb-3 hidden" id="comment-box">
         <i class="fas fa-times" id="close-com-card" ng-click="$ctrl.closeComCard()"></i>
         <h3 class="card-header">Commentaires</h3>
 

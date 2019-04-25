@@ -27,8 +27,9 @@ try {
    }
 } catch (MongoDB\Driver\Exception\ConnectionException $e) {
 
-    $result = 'Probleme de connexion avec la base de donnée';
+    $result = $e->getMessage();
+    header("HTTP/1.1 500 Internal Server Error");
 } 
 
 echo ($result);
-http_response_code(202);
+

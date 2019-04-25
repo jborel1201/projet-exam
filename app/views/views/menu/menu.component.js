@@ -3,16 +3,11 @@ angular.
     component('menu', {
 
         templateUrl: "views/views/menu/menu.html",
-        controller: function menuController($window,$scope) {
+        controller: function menuController($routeParams) {
+            ctrl = this;
+            
+            ctrl.codeError = $routeParams.codeError ? $routeParams.codeError : null;          
+            ctrl.textError = $routeParams.textError ? $routeParams.textError : null;
            
-            //fonction de routage
-            $scope.location = function (direction) {              
-                $window.location.href = '#!/' + direction
-            }
-
-            $scope.redirectMobile = function(){
-                $window.location.href = 'www/index.html'
-            }
-
         }
     });

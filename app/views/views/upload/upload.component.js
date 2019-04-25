@@ -3,7 +3,7 @@ angular.
     component('upload', {
 
         templateUrl: "views/views/upload/upload.html",
-        controller: function uploadController($scope, UploadDatas) {
+        controller: function uploadController($scope, UploadDatas, InputControl) {
 
             $scope.files = [];
 
@@ -39,16 +39,15 @@ angular.
                 this.comment = comment
             }
 
-
             /**
              * callback du foreach exécuté durant l'upload des fichiers
              * @param {*} file//élément courant            
              */
             function readAndAddFile(file) {
                 let reader = new FileReader();
-                let testDoubleExtension = file.name.split('.');
+               
 
-                if (/\.(jpe?g|png|gif)$/i.test(file.name) && testDoubleExtension.length == 2) {
+                if (InputControl.isCorrectFileType(file.name)) {
                     //lecture du fichier et création de l'objet file à transférer
                     reader.addEventListener("load", function () {
                         fileRead = new uploadFile(file.name, file.size, file.type, this.result, []);
@@ -106,7 +105,7 @@ angular.
                 self.visible = true;
 
 
-                var filesList = $(this).get(0).files;
+                var filesList = $(this).get(0).files;              
                 self.numberOfUploadFiles = filesList.length;
                 [].forEach.call(filesList, readAndAddFile);
 
@@ -166,7 +165,7 @@ angular.
 
 
             self.addCom = function () {
-                if (verifCom(self.privateComment)) {
+                if (InputControl.isValidCom(self.privateComment)) {
                     itemSelected.comment.push(self.privateComment);
                 } else {
                     alert('Champs vide. Commentaire non Ajouté.');
@@ -195,12 +194,11 @@ angular.
 
 
             $scope.save = function () {
-                if (verifCom(self.globalComment)) {
+                if (InputControl.isValidCom(self.globalComment)) {
                     for (file of $scope.files) {
                         file.comment.push(self.globalComment)
                     }
-                }
-                console.log($scope.files)
+                }            
                 var datas = {
                     'files': $scope.files
                 }
@@ -273,13 +271,6 @@ angular.
                 self.comment = "";
             }
 
-            function verifCom(data) {
-                let verif = true
-                if (!data.trim()) {
-                    verif = false;
-                }
-                return verif;
-            }
 
 
         }//ctrl
