@@ -1,1 +1,3 @@
-angular.module('selectBar',[]);
+angular.module('selectBar',[
+    
+]);

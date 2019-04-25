@@ -1,4 +1,4 @@
-#galContent {
+#gal-content {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -14,7 +14,7 @@ select-bar {
     z-index: 999;
 }
 
-.galArea {
+.gal-area {
     display: flex;
     border-bottom: 2px solid black;
     border-right: 2px solid black;
@@ -23,7 +23,7 @@ select-bar {
     max-height: 100%;
 }
 
-.gal {
+.gal-scroll {
     overflow-y: scroll;
     overflow-x: visible;
 }
