@@ -1,0 +1,2 @@
+<?php
+include 'UploadDaoTest.php';

@@ -1,1 +1,3 @@
-angular.module('sideMenu',[]);
+angular.module('sideMenu',[
+    
+]);

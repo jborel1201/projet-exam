@@ -1,19 +1,11 @@
-/*************************************
-Affichage des fichiers chargés
-*/
 #upload-files-content {
     width: 100%;
     max-height: 100%
 }
 
-/*
- Table
-*/
-
 table {
- 
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     width: 100%;
     max-height: calc(100vh - 150px);
     padding: 10px;
@@ -54,10 +46,7 @@ tbody {
     flex: 1
 }
 
-/*
-Validation upload
-*/
-#validation-upload{
+#validation-upload {
     height: 150px;
 }
 
@@ -74,30 +63,24 @@ Validation upload
     color: #F0615B
 }
 
-/*******************************
-compteur de fichiers chargés
-*/
-#counter-files-upload{
+#counter-files-upload {
     position: absolute;
-    width:10%;
-    bottom:0;
+    width: 10%;
+    bottom: 0;
     right: 0;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between
 }
 
-#counter-files-upload *{
-    flex:1
+#counter-files-upload * {
+    flex: 1
 }
 
-#counter-files-upload i{
+#counter-files-upload i {
     font-size: 5em;
 }
 
-/*******************************
-Input commentaire spécifique
-*/
 #private-com-input {
     position: absolute;
     z-index: 900;
@@ -112,18 +95,11 @@ Input commentaire spécifique
     flex: 1
 }
 
-/*********************************
-global
-*/
-
-.fas{
+.fas {
     cursor: pointer;
 }
 
-/**************************************
-zone d'upload
-*/
-#form-input-files{
+#form-input-files {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -148,7 +124,7 @@ zone d'upload
     width: 100%;
     height: 50%;
     text-align: center;
-    padding:0.5em
+    padding: 0.5em
 }
 
 #form-input-files input {
@@ -164,6 +140,3 @@ zone d'upload
 #form-input-files button:active {
     border: 0;
 }
-
-
-

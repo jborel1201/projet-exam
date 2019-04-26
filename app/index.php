@@ -63,9 +63,6 @@
 	<script src="services/utils/utils.service.js"></script>
 
 
-	<script src="views/components/show-img/show-img.module.js"></script>
-	<script src="views/components/show-img/show-img.component.js"></script>
-
 
 
 

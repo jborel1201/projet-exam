@@ -5,9 +5,9 @@ angular.
         templateUrl: "views/views/upload/upload.html",
         controller: function uploadController($scope, UploadDatas, InputControl) {
 
-            $scope.files = [];
-
             var self = this;
+
+            $scope.files = [];
             self.globalComment = "";
             self.privateComment = "";
 
@@ -45,7 +45,6 @@ angular.
              */
             function readAndAddFile(file) {
                 let reader = new FileReader();
-               
 
                 if (InputControl.isCorrectFileType(file.name)) {
                     //lecture du fichier et création de l'objet file à transférer
@@ -78,7 +77,6 @@ angular.
                     self.count++;
                     countError++;
                 }
-
             }
 
             /**
@@ -105,7 +103,7 @@ angular.
                 self.visible = true;
 
 
-                var filesList = $(this).get(0).files;              
+                var filesList = $(this).get(0).files;
                 self.numberOfUploadFiles = filesList.length;
                 [].forEach.call(filesList, readAndAddFile);
 
@@ -198,7 +196,7 @@ angular.
                     for (file of $scope.files) {
                         file.comment.push(self.globalComment)
                     }
-                }            
+                }
                 var datas = {
                     'files': $scope.files
                 }

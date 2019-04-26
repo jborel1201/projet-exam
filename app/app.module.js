@@ -1,6 +1,5 @@
 angular.module('imgApp', [ 
-    'upload',     
-    'showImg',
+    'upload',   
     'imageService',
     'menu',
     'galerie',  
