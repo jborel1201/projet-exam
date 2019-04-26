@@ -4,11 +4,9 @@ angular.
         templateUrl: "views/components/gal-medium/gal-medium.template.html",
         controller: function mediumController(Image) {
 
+            var ctrl = this
 
-            this.images = Image.query();
+            ctrl.images = Image.query();
 
         }
-
-
-
     });

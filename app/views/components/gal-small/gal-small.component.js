@@ -76,8 +76,5 @@ angular.
                     menu.addClass("hidden");
                 });
             }
-
-
         }//ctrl
-
     });

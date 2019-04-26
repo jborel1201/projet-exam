@@ -4,8 +4,9 @@ angular.
         templateUrl: "views/components/gal-large/gal-large.template.html",
         controller: function largeController(Image) {
 
-            this.images = Image.query();
+            var ctrl = this
+
+            ctrl.images = Image.query();
 
         }
-
     });

@@ -1,3 +1,3 @@
-angular.module('galLarge', [ 
+angular.module('galLarge', [
     'imageService'
 ]);
