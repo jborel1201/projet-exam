@@ -3,13 +3,13 @@ angular.
     component('upload', {
 
         templateUrl: "views/views/upload/upload.html",
-        controller: function uploadController($scope, UploadDatas, InputControl) {
+        controller: function uploadController($scope, UploadDatas, InputControl, AjaxResponse) {
 
-            var self = this;
+            var ctrl = this;
 
-            $scope.files = [];
-            self.globalComment = "";
-            self.privateComment = "";
+            ctrl.files = [];
+            ctrl.globalComment = "";
+            ctrl.privateComment = "";
 
 
 
@@ -18,10 +18,10 @@ angular.
            *//////////////////////////////////////////////////////////////
 
             //Variables de décompte des fichiers chargés
-            self.count = null;
+            ctrl.count = null;
             var countError = null;
-            self.numberOfUploadFiles = 0;
-            self.visible = false;
+            ctrl.numberOfUploadFiles = 0;
+            ctrl.visible = false;
 
             /**
              *  object file
@@ -47,34 +47,28 @@ angular.
                 let reader = new FileReader();
 
                 if (InputControl.isCorrectFileType(file.name)) {
-                    //lecture du fichier et création de l'objet file à transférer
-                    reader.addEventListener("load", function () {
+
+                    reader.onload = function () {
                         fileRead = new uploadFile(file.name, file.size, file.type, this.result, []);
-                    }, false);
+                    }
                     reader.readAsDataURL(file);
                     //ajout au scope des fichiers lus
-                    reader.addEventListener("loadend", function () {
+                    reader.onloadend = function () {
 
-                        self.count++;
-
-                        //ajout el à $scope.files
-                        $scope.$apply(function () {
-                            $scope.files.push(fileRead);
-                        });
+                        ctrl.count++;
+                        //ajout elt à la variable files
+                        $scope.$apply(() => { ctrl.files.push(fileRead) });
 
                         //masquage du compte lorsque tous les elements sont chargés
-                        if (self.count == self.numberOfUploadFiles) {
+                        if (ctrl.count == ctrl.numberOfUploadFiles) {
 
                             setTimeout(function () {
-                                $scope.$apply(function () {
-                                    self.visible = false;
-                                });
+                                $scope.$apply(() => { ctrl.visible = false });
                             }, 1000);
                         }
-
-                    });
+                    }
                 } else {
-                    self.count++;
+                    ctrl.count++;
                     countError++;
                 }
             }
@@ -82,32 +76,33 @@ angular.
             /**
              * Drag and Drop events
              */
+            // modification du style lors du deplacement
             $(document)
-                .on('dragover', '#form-input-files ', function (e) {
-                    $(this).addClass("styleDragDrop");
+                .on('dragover', '#form-input-files ', function () {
+                    $(this).removeClass("style-drag-drop");
                     return false;
                 })
-                .on('dragleave', '#form-input-files ', function (e) {
-                    $(this).removeClass("styleDragDrop");
+                .on('dragleave', '#form-input-files ', function () {
+                    $(this).addClass("style-drag-drop");
                     return false;
                 })
-                .on('drop', '#form-input-files ', function (e) {
-                    $(this).removeClass("styleDragDrop");
+                .on('drop', '#form-input-files ', function () {
+                    $(this).addClass("style-drag-drop");
                 });
-
+            //action lors du drop
             $("#input-files").on('change', function () {
                 //init
-                $scope.files = [];
-                self.count = 0;
+                ctrl.files = [];
+                ctrl.count = 0;
                 countError = 0;
-                self.visible = true;
+                ctrl.visible = true;
 
 
-                var filesList = $(this).get(0).files;
-                self.numberOfUploadFiles = filesList.length;
+                var filesList = $(this).get(0).files;// recupération des fichiers
+                ctrl.numberOfUploadFiles = filesList.length;
                 [].forEach.call(filesList, readAndAddFile);
 
-                //reset et affiche erreur
+                //reset input et affiche erreur
                 $(this).val('');
                 if (countError > 0) {
                     if (countError == 1) {
@@ -125,16 +120,13 @@ angular.
                         Items
             */
 
-            $scope.removeElt = function (index) {
-                $scope.files.splice(index, 1)
-
-            }
+            ctrl.removeElt = function (index) { ctrl.files.splice(index, 1) }
 
             var itemSelected = null
             /**
              * Ouverture input com et recupération de l'item selectionné
              */
-            self.openInputCom = function (file) {
+            ctrl.openInputCom = function (file) {
 
                 itemSelected = file;
 
@@ -156,15 +148,11 @@ angular.
 
             }
 
-            self.cancelCom = function () {
+            ctrl.cancelCom = function () { cleanInputMenu() }
 
-                cleanInputMenu();
-            }
-
-
-            self.addCom = function () {
-                if (InputControl.isValidCom(self.privateComment)) {
-                    itemSelected.comment.push(self.privateComment);
+            ctrl.addCom = function () {
+                if (InputControl.isValidCom(ctrl.privateComment)) {
+                    itemSelected.comment.push(ctrl.privateComment)
                 } else {
                     alert('Champs vide. Commentaire non Ajouté.');
                 }
@@ -176,8 +164,7 @@ angular.
              * clear input et itemSelected. cache l'input
              */
             function cleanInputMenu() {
-                console.log($scope.files)
-                self.privateComment = "";
+                ctrl.privateComment = "";
                 itemSelected = null;
                 $('#private-com-input').addClass("hidden");
             }
@@ -186,27 +173,26 @@ angular.
                         validation upload
             */
 
-            $scope.removeAll = function () {
-                clearScope();
+            ctrl.removeAll = function () { clearScope()         
+               
             }
 
 
-            $scope.save = function () {
-                if (InputControl.isValidCom(self.globalComment)) {
-                    for (file of $scope.files) {
-                        file.comment.push(self.globalComment)
-                    }
+
+
+            ctrl.save = function () {
+                if (InputControl.isValidCom(ctrl.globalComment)) {
+                    for (file of ctrl.files) { file.comment.push(ctrl.globalComment) }
                 }
-                var datas = {
-                    'files': $scope.files
-                }
+                var datas = { 'files': ctrl.files }
 
                 UploadDatas.insertFiles(datas).then(function successCallback(response) {
                     console.log(response.data)
 
-                }, function errorCallback(response) {
+                }, function errorCallback(response) { AjaxResponse.responseError(response) }
+                );
 
-                });
+
 
 
 
@@ -214,36 +200,36 @@ angular.
                     method: 'GET',
                     url: 'controllers/test2.php',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
-
+            
                 }).then(function successCallback(response) {
                     let data = response.data
                     //console.log(data[0].id.$oid)
                     //console.log(JSON.parse(data[0].datas))
                     // console.log(data[0].datas)
-
+            
                     //alert(JSON.parse(data[0].id))
                     /*for( let item of data[0].datas){
                         console.log(item.id);
                     }
                     //var testDelete = data[0].id.$oid;
-
+            
                     testDelete.id = data[0].id;
                     testDelete.comment = data[0].comment;
                     testDelete.datas = data[0].datas;
-
+            
                     $http({
                         method: 'DELETE',
                         url: `controllers/test.php?id=${testDelete}`,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     }).then(function successCallback(response) {
                         console.log(response.data)
-
+            
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
                     });
-
-
+            
+            
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
@@ -265,8 +251,8 @@ angular.
             */
 
             function clearScope() {
-                $scope.files = [];
-                self.comment = "";
+                ctrl.files = [];
+                ctrl.comment = "";
             }
 
 

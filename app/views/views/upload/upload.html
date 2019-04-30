@@ -1,7 +1,9 @@
 <link rel="stylesheet" href="/app/views/views/upload/upload.css">
 
-<div ng-if="files.length > 0" id="#upload-files-content">
+<div ng-if="$ctrl.files.length > 0" id="#upload-files-content">
 
+    <!--Ecran de validation des fichiers uploadés-->
+    <!--Liste des fichiers uploadé-->
     <table class="table table-hover" id="filesUpload">
         <thead>
             <tr>
@@ -13,13 +15,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="table-dark" ng-repeat="file in files">
+            <tr class="table-dark" ng-repeat="file in $ctrl.files">
                 <td scope="row"><img ng-src="{{file.src}}"></td>
                 <td>{{file.name}}</td>
                 <td>{{file.size}}</td>
                 <td>{{file.type}}</td>
                 <td id="container-icon-upload">
-                    <i class="far fa-trash-alt icon-upload" ng-click="removeElt($index)"></i>
+                    <i class="far fa-trash-alt icon-upload" ng-click="$ctrl.removeElt($index)"></i>
                     <i class="fas fa-pen-square icon-upload" ng-click="$ctrl.openInputCom(file)"></i>
                 </td>
             </tr>
@@ -27,25 +29,26 @@
 
     </table>
 
-
+    <!--Zone de validation-->
     <div id="validation-upload">
-
+        <!--Commentaire global-->
         <label for="com">Commentaires</label>
         <input type="text" class="form-control" id="com" ng-model="$ctrl.globalComment">
 
-        <i class="fas fa-check" ng-click="save()"></i>
-        <i class="fas fa-times" ng-click="removeAll()"></i>
+        <i class="fas fa-check" ng-click="$ctrl.save()"></i>
+        <i class="fas fa-times" ng-click="$ctrl.removeAll()"></i>
     </div>
 
 </div>
 
-<form ng-show="files.length == 0" id="form-input-files">
+<!--Zone upload visible uniquement lors de la selection des fichiers-->
+<form ng-show="$ctrl.files.length == 0" id="form-input-files" class="style-drag-drop">
     <input type="file" accept=".jpg, .jpeg, .png, .gif" multiple id="input-files">
     <i class="fas fa-cloud-upload-alt"></i>
     <p>Cliquer sur la zone ou drag and drop les fichiers</p>
 </form>
 
-
+<!--Fenetre de commentaire-->
 <div class="card text-white bg-dark mb-3 hidden" style="max-width: 20rem;" id="private-com-input">
     <div class="card-header">Ajouter un commentaire:</div>
     <div class="card-body">
@@ -57,7 +60,7 @@
     </div>
 </div>
 
-
+<!--repère visuel de l'évolution du chargement-->
 <div id="counter-files-upload" ng-if="$ctrl.visible">
     <h1>{{$ctrl.count}}/{{$ctrl.numberOfUploadFiles}}</h1><i class="far fa-images"></i>
 </div>

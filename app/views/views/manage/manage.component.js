@@ -48,18 +48,16 @@ angular.
 
             //ajouter un nouveau commentaire
             self.addNewCom = function () {
-                if (InputControl.isValidCom(self.newCom)) {                    
+                if (InputControl.isValidCom(self.newCom)) {
                     self.comments.push(self.newCom);//ajoute un commentaires aux commentaires existant
                     clearCommentBox()
-                } else {
-                    alert('Commentaire vide');
+                } else { 
+                    alert('Commentaire vide') 
                 }
             }
 
             //fermeture de la box commentaire
-            self.closeComCard = function () {
-                clearCommentBox()
-            }
+            self.closeComCard = function () { clearCommentBox() }
 
             /**
              * Fonction de réinitialisation de la box commentaire
@@ -100,9 +98,8 @@ angular.
             }
 
             //supprime l'image
-            self.deleteElement = function (data) {
-                UpdateUploadBd(data);
-            }
+            self.deleteElement = function (data) { UpdateUploadBd(data) }
+
 
             //valide image lors du drop           
             $(".droppable").droppable({
@@ -124,9 +121,7 @@ angular.
 
             //recupère l'objet selectionné
             var elementDrag = null
-            self.startDrag = (data) => {
-                elementDrag = data
-            }
+            self.startDrag = (data) => { elementDrag = data }
 
             /**
              * Fonction d'initialisation du drag           

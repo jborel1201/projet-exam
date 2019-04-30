@@ -12,8 +12,8 @@ try {
             $result = UploadDao::select($collection);
             break;
         case "POST":
-            $datas = json_decode(file_get_contents('php://input'));
-            $result = UploadDao::insert($datas, $collection);
+            $datas = json_decode(file_get_contents('php://input'));           
+            $result = UploadDao::insert($datas->files, $collection);
             break;
         case "DELETE":
             $paramId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
@@ -22,7 +22,7 @@ try {
         case "PUT":
             $paramId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
             $datas = json_decode(file_get_contents('php://input'));
-            $result = UploadDao::update($datas, $paramId, $collection);
+            $result = UploadDao::update($datas->files, $paramId, $collection);
             break;
    }
 } catch (MongoDB\Driver\Exception\ConnectionException $e) {

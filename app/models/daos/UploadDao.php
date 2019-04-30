@@ -33,7 +33,7 @@ class UploadDao
         $arrayFiles = [];
         $date = new DateTime();
         $dateUpload = $date->format('d-m-Y H:i:s');
-        foreach ($param->files as $file) {
+        foreach ($param as $file) {
             $testDoubleExtension = explode('.',$file->name );
             if (preg_match("/\b(\.jpg|\.JPG|\.png|\.PNG|\.gif|\.GIF)\b/", $file->name) == 1 && count($testDoubleExtension)==2) {
                 $data = new FileUpload();
@@ -63,7 +63,7 @@ class UploadDao
     {
 
         $arrayFiles = [];
-        foreach ($param->files as $file) {
+        foreach ($param as $file) {
             $data = new FileUpload();
             $data
                 ->setName($file->name)

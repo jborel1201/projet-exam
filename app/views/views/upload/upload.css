@@ -107,6 +107,9 @@ tbody {
     margin-left: -400px;
     width: 800px;
     height: 400px;
+}
+
+.style-drag-drop {
     border: 4px dashed #000;
 }
 
