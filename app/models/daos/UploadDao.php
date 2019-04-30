@@ -34,8 +34,11 @@ class UploadDao
         $date = new DateTime();
         $dateUpload = $date->format('d-m-Y H:i:s');
         foreach ($param as $file) {
-            $testDoubleExtension = explode('.',$file->name );
-            if (preg_match("/\b(\.jpg|\.JPG|\.png|\.PNG|\.gif|\.GIF)\b/", $file->name) == 1 && count($testDoubleExtension)==2) {
+            /*$base64string = $file->src;
+            file_put_contents('img.jpeg', base64_decode(explode(',',$base64string)[1]));*/
+            $testDoubleExtension = explode('.', $file->name);
+            if (preg_match("/\b(\.jpg|\.JPG|\.png|\.PNG|\.gif|\.GIF)\b/", $file->name) == 1 && count($testDoubleExtension) == 2) {
+
                 $data = new FileUpload();
                 $data
                     ->setName($file->name)
@@ -44,6 +47,9 @@ class UploadDao
                     ->setSrc($file->src)
                     ->setComment($file->comment)
                     ->setDateUpload($dateUpload);
+
+
+
                 array_push($arrayFiles, $data->fileUploadToArray());
             }
         }
@@ -90,4 +96,6 @@ class UploadDao
 
         return $delete->getDeletedCount();
     }
+
+
 }//class

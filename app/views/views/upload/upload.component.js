@@ -54,7 +54,7 @@ angular.
                     reader.readAsDataURL(file);
                     //ajout au scope des fichiers lus
                     reader.onloadend = function () {
-
+                        
                         ctrl.count++;
                         //ajout elt à la variable files
                         $scope.$apply(() => { ctrl.files.push(fileRead) });
@@ -99,6 +99,7 @@ angular.
 
 
                 var filesList = $(this).get(0).files;// recupération des fichiers
+               
                 ctrl.numberOfUploadFiles = filesList.length;
                 [].forEach.call(filesList, readAndAddFile);
 
