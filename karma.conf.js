@@ -17,17 +17,29 @@ module.exports = function (config) {
     files: [
       'lib/angular/angular.js',
       'lib/angular-mocks/angular-mocks.js',
+      'lib/angular-resource/angular-resource.js',
       'app.module.js',
-      'services/datas/datas.module.js',
-      'services/datas/datas.service.js',
-      'views/views/upload/upload.module.js',
-      'views/views/upload/upload.component.spec.js',
-
+      'services/image.module.js',
+      'services/image.service.js',
+      'views/components/gal-list/gal-list.module.js',   
+      'views/components/gal-list/gal-list.component.spec.js',
+      'views/components/gal-large/gal-large.module.js',   
+      'views/components/gal-large/gal-large.component.spec.js',
+      'views/components/gal-medium/gal-medium.module.js',   
+      'views/components/gal-medium/gal-medium.component.spec.js',
+      'views/components/gal-small/gal-small.module.js',   
+      'views/components/gal-small/gal-small.component.spec.js',
+      '**/*.module.js',
+      '*!(.module|.spec).js',
+      '!(lib)/**/*!(.module|.spec).js',
+      '**/*.spec.js'
     ],
 
 
     // list of files / patterns to exclude
     exclude: [
+      'mobile/build/main.js',
+      'mobile/service-worker.js'
     ],
 
 
@@ -62,7 +74,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome','Firefox','Edge'],
 
 
     // Continuous Integration mode

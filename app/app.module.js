@@ -4,5 +4,6 @@ angular.module('imgApp', [
     'menu',
     'galerie',  
     'manage',
-    'sideMenu' 
+    'sideMenu',
+    'galList' 
 ]); 
