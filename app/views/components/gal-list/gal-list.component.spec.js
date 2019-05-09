@@ -7,8 +7,7 @@ describe('galList', function () {
 
     // Test le controller
     describe('listController', function () {
-        var $httpBackend, ctrl;
-
+        var $httpBackend, ctrl;     
         beforeEach(inject(function ($componentController, _$httpBackend_) {
             $httpBackend = _$httpBackend_;
             $httpBackend.expectGET('datas/data.json')

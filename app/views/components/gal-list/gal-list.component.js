@@ -14,7 +14,7 @@ angular.
             ctrl.filterName = "date"
             ctrl.reverse = true;
             //fonction de modification au clic sur l'item
-            $scope.sortBy = function (filterName) {
+           $scope.sortBy = function (filterName) {
                 ctrl.reverse = (ctrl.filterName === filterName) ? !ctrl.reverse : false;
                 ctrl.filterName = filterName;
             }

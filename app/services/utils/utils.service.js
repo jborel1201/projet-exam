@@ -13,7 +13,7 @@ angular.
             }
             // vérification de la saisie du commentaire
             method.isValidCom = function (com) {
-                return com.trim()
+                return !!com.trim()
             }
 
             return method;
