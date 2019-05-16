@@ -54,6 +54,10 @@
 	<script src="boundaries/views/galerie/components/gal-small/gal-small.component.js"></script>
 	<script src="boundaries/global-components/side-menu/side-menu.module.js"></script>
 	<script src="boundaries/global-components/side-menu/side-menu.component.js"></script>
+	<script src="boundaries/views/upload/components/upload-preview/upload-preview.module.js"></script>
+	<script src="boundaries/views/upload/components/upload-preview/upload-preview.component.js"></script>
+	<script src="boundaries/views/upload/components/input-com/input-com.module.js"></script>
+	<script src="boundaries/views/upload/components/input-com/input-com.component.js"></script>
 	<!----------Import services--------------------->
 	<script src="services/mock/mock.module.js"></script>
 	<script src="services/mock/mock.service.js"></script>

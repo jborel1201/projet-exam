@@ -1,4 +1,5 @@
 angular.module('upload', [
   'dataService',
-  'utilsService'
+  'utilsService',
+  'uploadPreview'
 ]);
