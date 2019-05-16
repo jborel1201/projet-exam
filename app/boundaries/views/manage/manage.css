@@ -1,0 +1,55 @@
+#manage-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+#upload-folder {
+    flex: 0.2;
+    z-index: 10;
+}
+
+#upload-folder button {
+    margin: 5px;
+}
+
+#cards-container {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: visible;
+}
+
+#drag-drop-icon {
+    font-size: 2em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#empty {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#comment-box {
+    position: absolute;
+    z-index: 998;
+    right: 30px;
+    top: 30px;
+}
+
+#close-com-card {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#clone-img-drop {
+    position: absolute;
+    z-index: 999;
+    width: 150px
+}

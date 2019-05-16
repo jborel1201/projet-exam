@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/app/boundaries/views/galerie/components/gal-large/gal-large.css">
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="card mb-3 item" ng-repeat="image in $ctrl.images">
+            <h3 class="card-header">{{image.name}}</h3>
+
+            <img ng-src="{{image.src}}" alt="{{image.name}}">
+
+            <div class="card-body">
+                <p class="card-text">Date Upload: {{image.date | date:'dd-MM-yyyy HH:mm:ss'}}</p>
+                <p class="card-text">Taille: {{image.size}} bytes</p>
+                <p class="card-text">Type: {{image.type}}</p>
+            </div>
+        </div>
+    </div>
+</div>

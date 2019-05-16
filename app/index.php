@@ -33,32 +33,32 @@
 	<script src="app.module.js"></script>
 	<script src="app.config.js"></script>
 	<!----------Import pages----------------------------->
-	<script src="views/views/menu/menu.module.js"></script>
-	<script src="views/views/menu/menu.component.js"></script>
-	<script src="views/views/galerie/galerie.module.js"></script>
-	<script src="views/views/galerie/galerie.component.js"></script>
-	<script src="views/views/upload/upload.module.js"></script>
-	<script src="views/views/upload/upload.component.js"></script>
-	<script src="views/views/manage/manage.module.js"></script>
-	<script src="views/views/manage/manage.component.js"></script>
+	<script src="boundaries/views/menu/menu.module.js"></script>
+	<script src="boundaries/views/menu/menu.component.js"></script>
+	<script src="boundaries/views/galerie/galerie.module.js"></script>
+	<script src="boundaries/views/galerie/galerie.component.js"></script>
+	<script src="boundaries/views/upload/upload.module.js"></script>
+	<script src="boundaries/views/upload/upload.component.js"></script>
+	<script src="boundaries/views/manage/manage.module.js"></script>
+	<script src="boundaries/views/manage/manage.component.js"></script>
 	<!----------Import composants------------------------------------------>
-	<script src="views/components/select-bar/select-bar.module.js"></script>
-	<script src="views/components/select-bar/select-bar.component.js"></script>
-	<script src="views/components/gal-list/gal-list.module.js"></script>
-	<script src="views/components/gal-list/gal-list.component.js"></script>
-	<script src="views/components/gal-large/gal-large.module.js"></script>
-	<script src="views/components/gal-large/gal-large.component.js"></script>
-	<script src="views/components/gal-medium/gal-medium.module.js"></script>
-	<script src="views/components/gal-medium/gal-medium.component.js"></script>
-	<script src="views/components/gal-small/gal-small.module.js"></script>
-	<script src="views/components/gal-small/gal-small.component.js"></script>
-	<script src="views/components/side-menu/side-menu.module.js"></script>
-	<script src="views/components/side-menu/side-menu.component.js"></script>
+	<script src="boundaries/views/galerie/components/select-bar/select-bar.module.js"></script>
+	<script src="boundaries/views/galerie/components/select-bar/select-bar.component.js"></script>
+	<script src="boundaries/views/galerie/components/gal-list/gal-list.module.js"></script>
+	<script src="boundaries/views/galerie/components/gal-list/gal-list.component.js"></script>
+	<script src="boundaries/views/galerie/components/gal-large/gal-large.module.js"></script>
+	<script src="boundaries/views/galerie/components/gal-large/gal-large.component.js"></script>
+	<script src="boundaries/views/galerie/components/gal-medium/gal-medium.module.js"></script>
+	<script src="boundaries/views/galerie/components/gal-medium/gal-medium.component.js"></script>
+	<script src="boundaries/views/galerie/components/gal-small/gal-small.module.js"></script>
+	<script src="boundaries/views/galerie/components/gal-small/gal-small.component.js"></script>
+	<script src="boundaries/global-components/side-menu/side-menu.module.js"></script>
+	<script src="boundaries/global-components/side-menu/side-menu.component.js"></script>
 	<!----------Import services--------------------->
-	<script src="services/image.module.js"></script>
-	<script src="services/image.service.js"></script>
-	<script src="services/datas/datas.module.js"></script>
-	<script src="services/datas/datas.service.js"></script>
+	<script src="services/mock/mock.module.js"></script>
+	<script src="services/mock/mock.service.js"></script>
+	<script src="services/data/data.module.js"></script>
+	<script src="services/data/data.service.js"></script>
 	<script src="services/utils/utils.module.js"></script>
 	<script src="services/utils/utils.service.js"></script>
 

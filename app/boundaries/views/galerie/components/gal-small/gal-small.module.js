@@ -1,0 +1,3 @@
+angular.module('galSmall', [ 
+    'imageService'
+]);
