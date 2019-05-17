@@ -64,9 +64,7 @@ angular.
 
                 });
             }
-
             return method;
-
         }
     ])
 

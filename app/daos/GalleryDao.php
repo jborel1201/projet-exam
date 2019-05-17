@@ -23,11 +23,9 @@ class GalleryDao
                     ->setDateValidation($document->dateValidation)
                     ->setComment($document->comment);
 
-                array_push($arrayResult, $data->selectedDocToArray());
+                array_push($arrayResult, $data->toArray());
             }
-
-            return json_encode($arrayResult);
-       
+            return json_encode($arrayResult);       
     }
 
 
@@ -47,7 +45,7 @@ class GalleryDao
             ->setComment($param->comment)
             ->setDateValidation($dateValidation);
 
-        $insert = $collection->insertOne($data->fileGalleryToArray());
+        $insert = $collection->insertOne($data->toArray());
 
         return $insert->getInsertedCount();
     }

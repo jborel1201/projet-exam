@@ -33,15 +33,12 @@
 	<script src="app.module.js"></script>
 	<script src="app.config.js"></script>
 	<!----------Import pages----------------------------->
+	<!--Menu-->
 	<script src="boundaries/views/menu/menu.module.js"></script>
 	<script src="boundaries/views/menu/menu.component.js"></script>
+	<!--Gallery-->
 	<script src="boundaries/views/galerie/galerie.module.js"></script>
 	<script src="boundaries/views/galerie/galerie.component.js"></script>
-	<script src="boundaries/views/upload/upload.module.js"></script>
-	<script src="boundaries/views/upload/upload.component.js"></script>
-	<script src="boundaries/views/manage/manage.module.js"></script>
-	<script src="boundaries/views/manage/manage.component.js"></script>
-	<!----------Import composants------------------------------------------>
 	<script src="boundaries/views/galerie/components/select-bar/select-bar.module.js"></script>
 	<script src="boundaries/views/galerie/components/select-bar/select-bar.component.js"></script>
 	<script src="boundaries/views/galerie/components/gal-list/gal-list.module.js"></script>
@@ -52,12 +49,15 @@
 	<script src="boundaries/views/galerie/components/gal-medium/gal-medium.component.js"></script>
 	<script src="boundaries/views/galerie/components/gal-small/gal-small.module.js"></script>
 	<script src="boundaries/views/galerie/components/gal-small/gal-small.component.js"></script>
+	<!--Upload-->
+	<script src="boundaries/views/upload/upload.module.js"></script>
+	<script src="boundaries/views/upload/upload.component.js"></script>
+	<!--Manage-->
+	<script src="boundaries/views/manage/manage.module.js"></script>
+	<script src="boundaries/views/manage/manage.component.js"></script>
+	<!----------Import component------------------------------------->	
 	<script src="boundaries/global-components/side-menu/side-menu.module.js"></script>
 	<script src="boundaries/global-components/side-menu/side-menu.component.js"></script>
-	<script src="boundaries/views/upload/components/upload-preview/upload-preview.module.js"></script>
-	<script src="boundaries/views/upload/components/upload-preview/upload-preview.component.js"></script>
-	<script src="boundaries/views/upload/components/input-com/input-com.module.js"></script>
-	<script src="boundaries/views/upload/components/input-com/input-com.component.js"></script>
 	<!----------Import services--------------------->
 	<script src="services/mock/mock.module.js"></script>
 	<script src="services/mock/mock.service.js"></script>

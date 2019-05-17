@@ -1,13 +1,13 @@
 <?php
 
 require 'AbstractFile.php';
+require_once 'iToArray.php';
 
-class FileUpload extends AbstractFile
+class FileUpload extends AbstractFile implements iToArray
 {
- 
-    public function fileUploadToArray()
-    {
 
+    public function toArray()
+    {
         return array(
             'name' => $this->name,
             'type' => $this->type,

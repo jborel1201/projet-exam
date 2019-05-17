@@ -3,22 +3,36 @@ angular.
     component('upload', {
 
         templateUrl: "boundaries/views/upload/upload.html",
-        controller: function uploadController($scope, InputControl) {
+        controller: function uploadController($scope, InputControl, UploadData,AjaxResponse) {
 
-            var ctrl = this;
+            // init uploadController's variables on loading //
+            const ctrl = this;
             ctrl.files = [];
+             /// init counter's var ///
+             ctrl.count = null;
+             var countError = null;
+             ctrl.numberOfUploadFiles = 0;
+             ctrl.visible = false;
 
-
-            //Variables de décompte des fichiers chargés
-            ctrl.count = null;
-            var countError = null;
-            ctrl.numberOfUploadFiles = 0;
-            ctrl.visible = false;
+            //////////////////////////////////////////Upload////////////////////////////////////////////////         
+            ///// init drag and drop and define behavior ///
+            $(document)
+                .on('dragover', '#form-input-files ', function () {
+                    $(this).removeClass("style-drag-drop");
+                    return false;
+                })
+                .on('dragleave', '#form-input-files ', function () {
+                    $(this).addClass("style-drag-drop");
+                    return false;
+                })
+                .on('drop', '#form-input-files ', function () {
+                    $(this).addClass("style-drag-drop");
+                });
 
             /**
-             *  object file
+             * ** file Object ***
              * @param {string} name 
-             * @param {int} size 
+             * @param {number} size 
              * @param {string} type 
              * @param {base64} src 
              * @param {string} comment 
@@ -32,25 +46,25 @@ angular.
             }
 
             /**
-             * callback du foreach exécuté durant l'upload des fichiers
-             * @param {*} file//élément courant            
+             * callback foreach
+             * @param {*} file//current file          
              */
             function readAndAddFile(file) {
+                // instanciate a FileReader//
                 let reader = new FileReader();
-
+                //Read file if controls are Ok
                 if (InputControl.isCorrectFileType(file.name)) {
                     reader.onload = function () {
+                        // instantiate a file Object
                         fileRead = new uploadFile(file.name, file.size, file.type, this.result, []);
                     }
-                    reader.readAsDataURL(file);
-                    //ajout au scope des fichiers lus
+                    reader.readAsDataURL(file)//base64 encode
+                    //trigger when read is finished
                     reader.onloadend = function () {
                         ctrl.count++;
-                        //ajout elt à la variable files
-                        $scope.$apply(() => {
-                            ctrl.files.push(fileRead);
-                        });
-                        //masquage du compte lorsque tous les elements sont chargés
+                        //update files 
+                        $scope.$apply(() => { ctrl.files.push(fileRead) })
+                        //display counter when all files are loaded
                         if (ctrl.count == ctrl.numberOfUploadFiles) {
                             setTimeout(function () {
                                 $scope.$apply(() => { ctrl.visible = false });
@@ -63,23 +77,7 @@ angular.
                 }
             }
 
-            /**
-             * Drag and Drop events
-             */
-            // modification du style lors du deplacement
-            $(document)
-                .on('dragover', '#form-input-files ', function () {
-                    $(this).removeClass("style-drag-drop");
-                    return false;
-                })
-                .on('dragleave', '#form-input-files ', function () {
-                    $(this).addClass("style-drag-drop");
-                    return false;
-                })
-                .on('drop', '#form-input-files ', function () {
-                    $(this).addClass("style-drag-drop");
-                });
-           
+
             //trigger when a file is added
             $("#input-files").on('change', function () {
                 //init
@@ -87,7 +85,6 @@ angular.
                 ctrl.count = 0;
                 countError = 0;
                 ctrl.visible = true;
-
                 var filesList = $(this).get(0).files;//get FileList Object
 
                 ctrl.numberOfUploadFiles = filesList.length;
@@ -101,5 +98,77 @@ angular.
                 }
             });
 
+            ////////////////////////////////////////////Upload-preview///////////////////////////////////////////////////
+            //---------files list
+            ctrl.removeElt = function (index) { ctrl.files.splice(index, 1) }
+
+            var itemSelected = null;
+            ctrl.openInputCom = function (file) {
+                //get file
+                itemSelected = file
+                //display input com menu
+                let menu = $('#private-com-input');
+                menu.removeClass("hidden");
+                //get mouse's position and width menu
+                let posX = event.pageX;
+                let posY = event.pageY;
+                let menuWidth = menu.innerWidth();
+                //set css position to input com
+                menu.css({
+                    'left': (posX - menuWidth) + 'px',
+                    'top': posY + 'px'
+                })
+            }
+            //---------Validation area
+            // init var
+            ctrl.globalComment = "";
+            /**
+             * reset var 
+             */
+            function clearScope() { ctrl.files = [] }
+            // reset upload
+            ctrl.removeAll = function () { clearScope() }
+
+            // store data to database
+            ctrl.save = function () {
+                //check data entry
+                if (InputControl.isValidCom(ctrl.globalComment)) {
+                    for (file of ctrl.files) { file.comment.push(ctrl.globalComment) }
+                }
+                //use services to store data to database
+                var data = { 'files': ctrl.files }
+                UploadData.insertFiles(data).then(function successCallback(response) {
+                    console.log(response.data)
+                }, function errorCallback(response) { AjaxResponse.responseError(response) }
+                );
+                clearScope();
+            }
+
+            //////////////////////////////////Item comment window /////////////////////////////////
+
+            // init var
+            ctrl.privateComment = ""
+
+            /**
+             * close input comment and init var
+             */
+            function cleanInputMenu() {
+                ctrl.privateComment = "";
+                itemSelected = null;
+                $('#private-com-input').addClass("hidden");
+            }
+
+            //cancel com creation
+            ctrl.cancelCom = function () { cleanInputMenu() }
+            //push comment within item's com array
+            ctrl.addCom = function () {
+                //check data entry
+                if (InputControl.isValidCom(ctrl.privateComment)) {
+                    itemSelected.comment.push(ctrl.privateComment)
+                } else {
+                    alert('Champs vide. Commentaire non Ajouté.');
+                }
+                cleanInputMenu();
+            }
         }//ctrl
     })

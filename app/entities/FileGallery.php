@@ -1,8 +1,9 @@
 <?php
 
 require 'AbstractFile.php';
+require_once 'iToArray.php';
 
-class FileGallery extends AbstractFile
+class FileGallery extends AbstractFile implements iToArray
 {
     private $id;
     private $dateValidation;
@@ -28,10 +29,9 @@ class FileGallery extends AbstractFile
         return $this;
     }
 
-    public function fileGalleryToArray()
+    public function toArray()
     {
-
-        return array(
+        $array = array(
             'name' => $this->name,
             'type' => $this->type,
             'size' => $this->size,
@@ -40,9 +40,15 @@ class FileGallery extends AbstractFile
             'dateValidation' => $this->dateValidation,
             'comment' => $this->comment
         );
+
+        if($this->id){
+            $array['id'] = $this->id;
+        }
+
+        return $array;
     }
 
-    public function selectedDocToArray()
+    /*public function selectedDocToArray()
     {
 
         return array(
@@ -55,5 +61,5 @@ class FileGallery extends AbstractFile
             'dateValidation' => $this->dateValidation,
             'comment' => $this->comment
         );
-    }
+    }*/
 }//class

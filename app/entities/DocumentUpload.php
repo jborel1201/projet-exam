@@ -1,9 +1,10 @@
 <?php
+require_once 'iToArray.php';
 
-class DocumentUpload
+class DocumentUpload implements iToArray
 {
     private $id;
-    private $data;   
+    private $data;
     private $dateUpload;
 
     public function getId()
@@ -28,7 +29,6 @@ class DocumentUpload
         return $this;
     }
 
-    
     public function getDateUpload()
     {
         return $this->dateUpload;
@@ -40,20 +40,16 @@ class DocumentUpload
         return $this;
     }
 
-    public function docUploadToArray()
+    public function toArray()
     {
-        return array(
-            'dateUpload' => $this->dateUpload,            
-            'data' => $this->data
-        );
-    }
-
-    public function selectedDocToArray()
-    {
-        return array(
-            'id' => $this->id,
+        $array = array(
             'dateUpload' => $this->dateUpload,
             'data' => $this->data
         );
+
+        if ($this->id) {
+            $array['id'] = $this->id;
+        }
+        return $array;
     }
 }//class

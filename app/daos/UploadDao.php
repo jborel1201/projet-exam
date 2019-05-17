@@ -19,7 +19,7 @@ class UploadDao
                 ->setDateUpload($document['dateUpload'])
                 ->setData($document['data']);
 
-            array_push($arrayResult, $object->selectedDocToArray());
+            array_push($arrayResult, $object->toArray());
         }
 
         return json_encode($arrayResult);
@@ -33,9 +33,7 @@ class UploadDao
         $arrayFiles = [];
         $date = new DateTime();
         $dateUpload = $date->format('d-m-Y H:i:s');
-        foreach ($param as $file) {
-            /*$base64string = $file->src;
-            file_put_contents('img.jpeg', base64_decode(explode(',',$base64string)[1]));*/
+        foreach ($param as $file) {           
             $testDoubleExtension = explode('.', $file->name);
             if (preg_match("/\b(\.jpg|\.JPG|\.png|\.PNG|\.gif|\.GIF)\b/", $file->name) == 1 && count($testDoubleExtension) == 2) {
 
@@ -48,9 +46,7 @@ class UploadDao
                     ->setComment($file->comment)
                     ->setDateUpload($dateUpload);
 
-
-
-                array_push($arrayFiles, $data->fileUploadToArray());
+                array_push($arrayFiles, $data->toArray());
             }
         }
 
@@ -60,7 +56,7 @@ class UploadDao
             ->setData($arrayFiles)
             ->setDateUpload($dateUpload);
 
-        $insert = $collection->insertOne($object->docUploadToArray());
+        $insert = $collection->insertOne($object->toArray());
 
         return $insert->getInsertedCount();
     }
@@ -78,7 +74,7 @@ class UploadDao
                 ->setSrc($file->src)
                 ->setComment($file->comment)
                 ->setDateUpload($file->dateUpload);
-            array_push($arrayFiles, $data->fileUploadToArray());
+            array_push($arrayFiles, $data->toArray());
         }
 
         $update = $collection->updateOne(
